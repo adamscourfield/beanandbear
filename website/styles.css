@@ -47,6 +47,16 @@ label{cursor:pointer;-webkit-user-select:none;user-select:none}
 .press{transition:transform .55s var(--bounce),background-color .3s,color .3s,border-color .3s,box-shadow .3s}
 .press:active{transform:scale(.96);transition-duration:.08s}
 
+/* ---------- scroll reveal ----------
+   A section rises and clears into view as it's scrolled to, the same
+   rise/spring language as the hero mark and the shop filters already use.
+   Pure CSS (animation-timeline), so it's a no-op — elements simply show,
+   same as today — in any browser that doesn't support it yet. */
+@supports (animation-timeline: view()) {
+  .reveal{animation:reveal-in linear both;animation-timeline:view();animation-range:entry 2% entry 42%}
+  @keyframes reveal-in{from{opacity:0;filter:blur(3px);transform:translateY(26px)}to{opacity:1;filter:blur(0);transform:none}}
+}
+
 /* the brand's type voice */
 .label{font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-tx)}
 .dark .label{color:var(--gold)}
@@ -66,6 +76,26 @@ label{cursor:pointer;-webkit-user-select:none;user-select:none}
 .views{position:fixed;inset:0;z-index:1}
 .view{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;display:none;background:var(--cream)}
 #v-home:checked ~ .views #view-home,#v-shop:checked ~ .views #view-shop{display:block}
+/* Home ⇄ Shop: a soft rise-and-clear crossfade, not a hard cut. Both
+   panels sit in the same spot (position:absolute;inset:0 above), so for
+   the moment they overlap it reads as one view dissolving into the next —
+   the same move as switching tabs in the store app. Needs @starting-style
+   + the discrete-display transition; elsewhere it stays the plain instant
+   swap it's always been. */
+@supports (transition-behavior: allow-discrete) {
+  .view{
+    opacity:0;filter:blur(7px);transform:translateY(14px) scale(.98);
+    transition:opacity .45s var(--spring),filter .4s ease,transform .5s var(--spring),display .5s allow-discrete;
+  }
+  #v-home:checked ~ .views #view-home,#v-shop:checked ~ .views #view-shop{
+    opacity:1;filter:blur(0);transform:none;
+  }
+  @starting-style{
+    #v-home:checked ~ .views #view-home,#v-shop:checked ~ .views #view-shop{
+      opacity:0;filter:blur(7px);transform:translateY(14px) scale(.98);
+    }
+  }
+}
 .clear{padding-top:calc(4.8rem + env(safe-area-inset-top))}
 
 /* ---------- the only chrome: bear, account, basket ---------- */
@@ -89,7 +119,8 @@ label.fl-bear{cursor:pointer}
 
 /* ---------- hero: the store at half transparency, with the logo over it ---------- */
 .hero{position:relative;height:100svh;overflow:hidden;background:var(--forest)}
-.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 42%}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 42%;animation:hero-settle 9s ease-out both}
+@keyframes hero-settle{from{transform:scale(1.07)}to{transform:scale(1)}}
 .hero::after{content:"";position:absolute;inset:0;background:rgba(30,34,30,.46)}
 .mark{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 var(--gut);animation:rise 1.4s var(--spring) both .15s}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -139,16 +170,37 @@ label.fl-bear{cursor:pointer}
 #f-pud:checked ~ .chips label[for="f-pud"],#f-cream:checked ~ .chips label[for="f-cream"],#f-diff:checked ~ .chips label[for="f-diff"]{background:var(--forest);color:var(--cream);border-color:var(--forest)}
 #f-fruit:checked ~ .grid .item:not([data-c="fruit"]),#f-choc:checked ~ .grid .item:not([data-c="choc"]),#f-pud:checked ~ .grid .item:not([data-c="pud"]),
 #f-cream:checked ~ .grid .item:not([data-c="cream"]),#f-diff:checked ~ .grid .item:not([data-c="diff"]){display:none}
-#f-fruit:checked ~ .grid .item{animation:s1 .7s var(--spring) both}
-#f-choc:checked ~ .grid .item{animation:s2 .7s var(--spring) both}
-#f-pud:checked ~ .grid .item{animation:s3 .7s var(--spring) both}
-#f-cream:checked ~ .grid .item{animation:s4 .7s var(--spring) both}
-#f-diff:checked ~ .grid .item{animation:s5 .7s var(--spring) both}
+/* animation-name only here (not the shorthand) so the nth-child stagger
+   below can set animation-delay without a specificity fight; a distinct
+   keyframe per filter (rather than reusing one) is what makes switching
+   straight from one filter to another restart the animation at all. */
+#f-all:checked ~ .grid .item{animation-name:s0;animation-duration:.7s;animation-timing-function:var(--spring);animation-fill-mode:both}
+#f-fruit:checked ~ .grid .item{animation-name:s1;animation-duration:.7s;animation-timing-function:var(--spring);animation-fill-mode:both}
+#f-choc:checked ~ .grid .item{animation-name:s2;animation-duration:.7s;animation-timing-function:var(--spring);animation-fill-mode:both}
+#f-pud:checked ~ .grid .item{animation-name:s3;animation-duration:.7s;animation-timing-function:var(--spring);animation-fill-mode:both}
+#f-cream:checked ~ .grid .item{animation-name:s4;animation-duration:.7s;animation-timing-function:var(--spring);animation-fill-mode:both}
+#f-diff:checked ~ .grid .item{animation-name:s5;animation-duration:.7s;animation-timing-function:var(--spring);animation-fill-mode:both}
+@keyframes s0{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes s1{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes s2{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes s3{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes s4{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes s5{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* a gentle ripple instead of all 42 landing at once */
+.grid .item:nth-child(14n+1){animation-delay:0ms}
+.grid .item:nth-child(14n+2){animation-delay:30ms}
+.grid .item:nth-child(14n+3){animation-delay:60ms}
+.grid .item:nth-child(14n+4){animation-delay:90ms}
+.grid .item:nth-child(14n+5){animation-delay:120ms}
+.grid .item:nth-child(14n+6){animation-delay:150ms}
+.grid .item:nth-child(14n+7){animation-delay:180ms}
+.grid .item:nth-child(14n+8){animation-delay:210ms}
+.grid .item:nth-child(14n+9){animation-delay:240ms}
+.grid .item:nth-child(14n+10){animation-delay:270ms}
+.grid .item:nth-child(14n+11){animation-delay:300ms}
+.grid .item:nth-child(14n+12){animation-delay:330ms}
+.grid .item:nth-child(14n+13){animation-delay:360ms}
+.grid .item:nth-child(14n){animation-delay:390ms}
 
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem .8rem}
 /* a flavour card, as on the counter: cream card on a brass plate */
