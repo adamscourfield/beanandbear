@@ -4,6 +4,23 @@
   var RECIPES = JSON.parse(document.getElementById('recipes-data').textContent);
   var DATA = JSON.parse(document.getElementById('app-data').textContent);
   var CAT_LABEL = { signature: 'Signature', choc: 'Chocolate', fruit: 'Fruit', pud: 'Pudding-inspired' };
+  var DEMO_TODAY = '2026-10-11'; // matches the last day of DATA.sales_days — the single "now" for the whole prototype
+
+  // ---- date helpers (all dates are "YYYY-MM-DD" local, no timezone math) ----
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function isoOf(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+  function dateOf(iso) { return new Date(iso + 'T00:00:00'); }
+  function addDays(iso, n) { var d = dateOf(iso); d.setDate(d.getDate() + n); return isoOf(d); }
+  function addMonths(iso, n) { var d = dateOf(iso); d.setMonth(d.getMonth() + n); return isoOf(d); }
+  function addYears(iso, n) { var d = dateOf(iso); d.setFullYear(d.getFullYear() + n); return isoOf(d); }
+  function startOfWeek(iso) { var d = dateOf(iso); var dow = d.getDay(); d.setDate(d.getDate() + (dow === 0 ? -6 : 1 - dow)); return isoOf(d); }
+  function startOfMonth(iso) { var d = dateOf(iso); return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-01'; }
+  function formatSpan(startIso, endIso) {
+    var s = dateOf(startIso), e = dateOf(endIso);
+    var sMon = s.toLocaleDateString('en-GB', { month: 'short' }), eMon = e.toLocaleDateString('en-GB', { month: 'short' });
+    if (sMon === eMon) return s.getDate() + '–' + e.getDate() + ' ' + eMon + ' ' + e.getFullYear();
+    return s.getDate() + ' ' + sMon + ' – ' + e.getDate() + ' ' + eMon + ' ' + e.getFullYear();
+  }
 
   function staffById(id) {
     return DATA.staff.find(function (s) { return s.id === id; });
@@ -116,7 +133,10 @@
     animateBars(scope);
     animateRing(scope);
     if (view === 'recipes') animatePops(scope, '.recipe-card', 14);
-    if (view === 'roster') animatePops(scope, '.shift-cell', 10);
+    if (view === 'roster') {
+      var sel = rosterState.mode === 'week' ? '.shift-cell' : rosterState.mode === 'month' ? '.cal-day' : '.month-card';
+      animatePops(scope, sel, rosterState.mode === 'week' ? 10 : 6);
+    }
     if (view === 'inventory') animatePops(scope, '#inv-body tr', 12);
     if (view === 'sales') { drawSalesChart(salesRange); animatePops(scope, '.flavour-row', 50); animateThreshold(); }
   }
@@ -232,12 +252,78 @@
   window.closeRecipe = closeRecipe;
 
   // ================= Roster =================
-  var ROSTER_TODAY_IDX = 3; // Thursday, for "today" highlighting in the demo roster week
+  var ROSTER_MIN = '2026-01-01', ROSTER_MAX = '2026-12-31';
+  var rosterState = { mode: 'week', anchor: '2026-10-12' };
+
+  function timeToHours(t) {
+    var p = t.split(':');
+    return parseInt(p[0], 10) + parseInt(p[1], 10) / 60;
+  }
+  function rosterEntry(iso) { return DATA.roster[iso] || { shifts: [] }; }
+
+  function setRosterModeTab(mode) {
+    document.querySelectorAll('#roster-mode-tabs .pill-tab').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-mode') === mode);
+    });
+  }
+
+  document.getElementById('roster-mode-tabs').addEventListener('click', function (e) {
+    var btn = e.target.closest('.pill-tab');
+    if (!btn) return;
+    setRosterModeTab(btn.getAttribute('data-mode'));
+    rosterState.mode = btn.getAttribute('data-mode');
+    renderRoster();
+  });
+  document.getElementById('roster-prev').addEventListener('click', function () { rosterNav(-1); });
+  document.getElementById('roster-next').addEventListener('click', function () { rosterNav(1); });
+  document.getElementById('roster-today').addEventListener('click', function () {
+    rosterState.anchor = DEMO_TODAY;
+    renderRoster();
+  });
+
+  function rosterNav(dir) {
+    var next = rosterState.mode === 'week' ? addDays(rosterState.anchor, 7 * dir)
+      : rosterState.mode === 'month' ? addMonths(rosterState.anchor, dir)
+      : addYears(rosterState.anchor, dir);
+    if (next < ROSTER_MIN) next = ROSTER_MIN;
+    if (next > ROSTER_MAX) next = ROSTER_MAX;
+    rosterState.anchor = next;
+    renderRoster();
+  }
 
   function renderRoster() {
+    var mode = rosterState.mode;
+    document.getElementById('roster-week-card').style.display = mode === 'week' ? '' : 'none';
+    document.getElementById('roster-month-wrap').style.display = mode === 'month' ? '' : 'none';
+    document.getElementById('roster-year-wrap').style.display = mode === 'year' ? '' : 'none';
+    document.getElementById('roster-bottom-week').style.display = mode === 'week' ? '' : 'none';
+    document.getElementById('roster-bottom-month').style.display = mode === 'month' ? '' : 'none';
+    document.getElementById('roster-bottom-year').style.display = mode === 'year' ? '' : 'none';
+
+    var atMin = (mode === 'week' ? addDays(rosterState.anchor, -7) : mode === 'month' ? addMonths(rosterState.anchor, -1) : addYears(rosterState.anchor, -1)) < ROSTER_MIN;
+    var atMax = (mode === 'week' ? addDays(rosterState.anchor, 7) : mode === 'month' ? addMonths(rosterState.anchor, 1) : addYears(rosterState.anchor, 1)) > ROSTER_MAX;
+    document.getElementById('roster-prev').disabled = atMin;
+    document.getElementById('roster-next').disabled = atMax;
+
+    if (mode === 'week') renderRosterWeek();
+    else if (mode === 'month') renderRosterMonth();
+    else renderRosterYear();
+  }
+
+  function renderRosterWeek() {
+    var weekStart = startOfWeek(rosterState.anchor);
+    var days = []; for (var i = 0; i < 7; i++) days.push(addDays(weekStart, i));
+    var weekEnd = days[6];
+
+    document.getElementById('roster-period-label').textContent = 'Week of ' + formatSpan(weekStart, weekEnd);
+    document.getElementById('roster-sub').textContent = "Tap an open shift to sign up. Tap a filled shift to see who's on.";
+
     var grid = document.getElementById('roster-grid');
-    grid.innerHTML = DATA.roster.map(function (day, di) {
-      var cells = day.shifts.map(function (shift, si) {
+    grid.innerHTML = days.map(function (iso) {
+      var d = dateOf(iso);
+      var dayName = d.toLocaleDateString('en-GB', { weekday: 'short' });
+      var dateLabel = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+      var cells = rosterEntry(iso).shifts.map(function (shift, si) {
         if (shift.staff) {
           var s = staffById(shift.staff);
           var mine = shift.staff === currentStaffId ? ' mine' : '';
@@ -245,36 +331,153 @@
             '<div class="who">' + initialsAvatar(s) + '<span class="wn">' + s.name.split(' ')[0] + '</span></div></div>';
         }
         return '<div class="shift-cell open"><span class="stime">' + shift.label + ' · ' + shift.time + '</span>' +
-          '<button class="shift-btn" onclick="claimShift(' + di + ',' + si + ')">+ Sign up</button></div>';
+          '<button class="shift-btn" onclick="claimShift(\'' + iso + '\',' + si + ')">+ Sign up</button></div>';
       }).join('');
-      return '<div class="roster-day' + (di === ROSTER_TODAY_IDX ? ' today' : '') + '">' +
-        '<div class="roster-day-head"><b>' + day.day + '</b><span>' + day.date + '</span></div>' + cells + '</div>';
+      return '<div class="roster-day' + (iso === DEMO_TODAY ? ' today' : '') + '">' +
+        '<div class="roster-day-head"><b>' + dayName + '</b><span>' + dateLabel + '</span></div>' + cells + '</div>';
     }).join('');
+    animatePops(grid, '.shift-cell', 10);
+
+    document.getElementById('hours-week-label').textContent = 'Hours — ' + formatSpan(weekStart, weekEnd);
+    renderHoursList('hours-list', computeHoursForDates(days));
+
+    var prevWeekStart = addDays(weekStart, -7), prevWeekEnd = addDays(weekStart, -1);
+    document.getElementById('history-label').textContent = 'Shifts worked — ' + formatSpan(prevWeekStart, prevWeekEnd);
+    renderHistoryFor(prevWeekStart, prevWeekEnd);
   }
 
-  function claimShift(di, si) {
-    var shift = DATA.roster[di].shifts[si];
+  function renderRosterMonth() {
+    var monthStart = startOfMonth(rosterState.anchor);
+    var d = dateOf(monthStart);
+    var year = d.getFullYear(), month = d.getMonth();
+    var monthLabel = d.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+
+    document.getElementById('roster-period-label').textContent = monthLabel;
+    document.getElementById('roster-sub').textContent = 'Tap a day to open that week.';
+
+    var firstDow = (dateOf(monthStart).getDay() + 6) % 7; // 0 = Monday
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+    var leadStart = addDays(monthStart, -firstDow);
+    var cells = [];
+    for (var i = 0; i < firstDow; i++) cells.push({ iso: addDays(leadStart, i), outside: true });
+    for (var day = 1; day <= daysInMonth; day++) cells.push({ iso: monthStart.slice(0, 8) + pad2(day), outside: false });
+    while (cells.length % 7 !== 0) cells.push({ iso: addDays(cells[cells.length - 1].iso, 1), outside: true });
+
+    var weekdayRow = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(function (w) { return '<div class="cal-weekday">' + w + '</div>'; }).join('');
+    var dayCells = cells.map(function (c) {
+      var shifts = rosterEntry(c.iso).shifts;
+      var filled = shifts.filter(function (s) { return s.staff; }).length;
+      var dots = shifts.map(function (s) { return '<span class="cal-dot' + (s.staff ? ' filled' : '') + '"></span>'; }).join('');
+      var isToday = c.iso === DEMO_TODAY;
+      return '<div class="cal-day' + (c.outside ? ' outside' : '') + (isToday ? ' today' : '') + '" onclick="jumpToWeek(\'' + c.iso + '\')">' +
+        '<span class="dnum">' + dateOf(c.iso).getDate() + '</span>' +
+        '<span class="dhours">' + (shifts.length ? filled + '/' + shifts.length + ' staffed' : '') + '</span>' +
+        '<div class="dots">' + dots + '</div></div>';
+    }).join('');
+
+    var wrap = document.getElementById('roster-month-wrap');
+    wrap.innerHTML = '<div class="cal-grid cal-head">' + weekdayRow + '</div><div class="cal-grid">' + dayCells + '</div>';
+    animatePops(wrap, '.cal-day', 5);
+
+    var monthDays = []; for (var dd = 1; dd <= daysInMonth; dd++) monthDays.push(monthStart.slice(0, 8) + pad2(dd));
+    document.getElementById('hours-month-label').textContent = 'Hours — ' + monthLabel;
+    renderHoursList('hours-month-list', computeHoursForDates(monthDays));
+
+    var openList = [];
+    monthDays.forEach(function (iso) {
+      rosterEntry(iso).shifts.forEach(function (shift) { if (!shift.staff) openList.push({ iso: iso, shift: shift }); });
+    });
+    document.getElementById('month-open-count').textContent = openList.length + ' open';
+    document.getElementById('month-open-shifts').innerHTML = openList.length ? openList.map(function (o) {
+      var label = dateOf(o.iso).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+      return '<div class="mini-row"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg></span>' +
+        '<span class="meta"><b>' + label + '</b><span>' + o.shift.label + ' · ' + o.shift.time + '</span></span></div>';
+    }).join('') : '<div class="empty" style="margin:8px">Every shift is covered this month.</div>';
+  }
+
+  function renderRosterYear() {
+    var year = dateOf(rosterState.anchor).getFullYear();
+    document.getElementById('roster-period-label').textContent = String(year);
+    document.getElementById('roster-sub').textContent = 'Tap a month to open its calendar.';
+
+    var months = [];
+    for (var m = 0; m < 12; m++) {
+      var monthStart = year + '-' + pad2(m + 1) + '-01';
+      var daysInMonth = new Date(year, m + 1, 0).getDate();
+      var totalShifts = 0, filledShifts = 0, totalHours = 0, heat = [];
+      for (var day = 1; day <= daysInMonth; day++) {
+        var shifts = rosterEntry(year + '-' + pad2(m + 1) + '-' + pad2(day)).shifts;
+        var filled = shifts.filter(function (s) { return s.staff; }).length;
+        totalShifts += shifts.length; filledShifts += filled;
+        shifts.forEach(function (s) {
+          if (!s.staff) return;
+          var p = s.time.split('–').map(function (t) { return t.trim(); });
+          totalHours += timeToHours(p[1]) - timeToHours(p[0]);
+        });
+        var ratio = shifts.length ? filled / shifts.length : 0;
+        heat.push(ratio === 0 ? 0 : ratio < 0.4 ? 1 : ratio < 0.7 ? 2 : ratio < 1 ? 3 : 4);
+      }
+      months.push({ monthStart: monthStart, totalShifts: totalShifts, filledShifts: filledShifts, totalHours: totalHours, heat: heat });
+    }
+
+    var wrap = document.getElementById('roster-year-wrap');
+    wrap.innerHTML = months.map(function (info) {
+      var name = dateOf(info.monthStart).toLocaleDateString('en-GB', { month: 'long' });
+      var heatCells = info.heat.map(function (lvl) { return '<span class="heat-cell' + (lvl ? ' l' + lvl : '') + '"></span>'; }).join('');
+      var openCount = info.totalShifts - info.filledShifts;
+      return '<div class="card month-card anim-pop" onclick="jumpToMonth(\'' + info.monthStart + '\')">' +
+        '<h4>' + name + '</h4><div class="month-heat">' + heatCells + '</div>' +
+        '<div class="mstat">' + Math.round(info.totalHours) + 'h scheduled · ' + openCount + ' open</div></div>';
+    }).join('');
+    animatePops(wrap, '.month-card', 18);
+
+    var totalHoursYear = 0, totalShiftsYear = 0, openShiftsYear = 0;
+    months.forEach(function (info) {
+      totalHoursYear += info.totalHours;
+      totalShiftsYear += info.totalShifts;
+      openShiftsYear += info.totalShifts - info.filledShifts;
+    });
+    document.getElementById('year-stat-hours').setAttribute('data-count', Math.round(totalHoursYear));
+    document.getElementById('year-stat-shifts').setAttribute('data-count', totalShiftsYear);
+    document.getElementById('year-stat-open').setAttribute('data-count', openShiftsYear);
+    animateCounts(document.getElementById('roster-bottom-year'));
+  }
+
+  window.jumpToWeek = function (iso) {
+    rosterState.mode = 'week'; rosterState.anchor = iso;
+    setRosterModeTab('week'); renderRoster();
+  };
+  window.jumpToMonth = function (monthStartIso) {
+    rosterState.mode = 'month'; rosterState.anchor = monthStartIso;
+    setRosterModeTab('month'); renderRoster();
+  };
+
+  function claimShift(iso, si) {
+    var entry = DATA.roster[iso];
+    if (!entry) return;
+    var shift = entry.shifts[si];
     shift.staff = currentStaffId;
     renderRoster();
-    animatePops(document.getElementById('roster-grid'), '.shift-cell', 6);
-    showToast("You're on for " + DATA.roster[di].day + ' ' + shift.label.toLowerCase() + '.');
-    renderHours();
+    showToast("You're on for " + dateOf(iso).toLocaleDateString('en-GB', { weekday: 'long' }) + ' ' + shift.label.toLowerCase() + '.');
   }
   window.claimShift = claimShift;
 
-  function renderHours() {
+  function computeHoursForDates(days) {
     var totals = {};
     DATA.staff.forEach(function (s) { totals[s.id] = 0; });
-    DATA.roster.forEach(function (day) {
-      day.shifts.forEach(function (shift) {
+    days.forEach(function (iso) {
+      rosterEntry(iso).shifts.forEach(function (shift) {
         if (!shift.staff) return;
         var parts = shift.time.split('–').map(function (t) { return t.trim(); });
-        var h = timeToHours(parts[1]) - timeToHours(parts[0]);
-        totals[shift.staff] = (totals[shift.staff] || 0) + h;
+        totals[shift.staff] = (totals[shift.staff] || 0) + (timeToHours(parts[1]) - timeToHours(parts[0]));
       });
     });
+    return totals;
+  }
+
+  function renderHoursList(elId, totals) {
     var max = Math.max.apply(null, Object.values(totals).concat([1]));
-    var list = document.getElementById('hours-list');
+    var list = document.getElementById(elId);
     list.innerHTML = DATA.staff.map(function (s) {
       var h = totals[s.id] || 0;
       var pct = Math.round((h / max) * 100);
@@ -284,35 +487,49 @@
     }).join('');
     animateBars(list);
   }
-  function timeToHours(t) {
-    var p = t.split(':');
-    return parseInt(p[0], 10) + parseInt(p[1], 10) / 60;
-  }
 
-  function renderHistory() {
+  function renderHistoryFor(startIso, endIso) {
+    var rows = [];
+    for (var iso = startIso; iso <= endIso; iso = addDays(iso, 1)) {
+      (function (iso) {
+        rosterEntry(iso).shifts.forEach(function (shift) {
+          if (!shift.staff) return;
+          var parts = shift.time.split('–').map(function (t) { return t.trim(); });
+          rows.push({ iso: iso, staff: shift.staff, inT: parts[0], outT: parts[1], hours: timeToHours(parts[1]) - timeToHours(parts[0]) });
+        });
+      })(iso);
+    }
     var body = document.getElementById('history-body');
-    body.innerHTML = DATA.history.map(function (h) {
-      var s = staffById(h.staff);
-      return '<tr><td>' + h.date + '</td><td>' + initialsAvatar(s, 'sm') + ' ' + s.name + '</td><td>' + h.in + '</td><td>' + h.out + '</td><td>' + h.hours.toFixed(1) + '</td></tr>';
+    if (!rows.length) { body.innerHTML = '<tr><td colspan="5"><div class="empty">No shifts worked in this period.</div></td></tr>'; return; }
+    body.innerHTML = rows.map(function (r) {
+      var s = staffById(r.staff);
+      var dateLabel = dateOf(r.iso).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+      return '<tr><td>' + dateLabel + '</td><td>' + initialsAvatar(s, 'sm') + ' ' + s.name + '</td><td>' + r.inT + '</td><td>' + r.outT + '</td><td>' + r.hours.toFixed(1) + '</td></tr>';
     }).join('');
   }
 
   function openShiftModal() {
+    var weekStart = startOfWeek(rosterState.mode === 'week' ? rosterState.anchor : DEMO_TODAY);
+    var weekDays = []; for (var i = 0; i < 7; i++) weekDays.push(addDays(weekStart, i));
     var options = DATA.staff.map(function (s) { return '<option value="' + s.id + '">' + s.name + '</option>'; }).join('');
+    var dayOptions = weekDays.map(function (iso) {
+      return '<option value="' + iso + '">' + dateOf(iso).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + '</option>';
+    }).join('');
     showModal('Add a shift', '<div class="stack">' +
-      '<label>Day<select class="field" id="ns-day">' + DATA.roster.map(function (d) { return '<option>' + d.day + '</option>'; }).join('') + '</select></label>' +
+      '<label>Day<select class="field" id="ns-day">' + dayOptions + '</select></label>' +
       '<label>Time<input class="field" id="ns-time" placeholder="e.g. 9:00 – 13:00" value="9:00 – 13:00"></label>' +
       '<label>Staff (leave unset to post as open)<select class="field" id="ns-staff"><option value="">— Open shift —</option>' + options + '</select></label>' +
       '</div>',
       function () {
-        var dayLabel = document.getElementById('ns-day').value;
+        var iso = document.getElementById('ns-day').value;
         var time = document.getElementById('ns-time').value || '9:00 – 13:00';
         var staffId = document.getElementById('ns-staff').value || null;
-        var day = DATA.roster.find(function (d) { return d.day === dayLabel; });
-        day.shifts.push({ label: 'Extra', time: time, staff: staffId });
+        if (!DATA.roster[iso]) DATA.roster[iso] = { shifts: [] };
+        DATA.roster[iso].shifts.push({ label: 'Extra', time: time, staff: staffId });
+        rosterState.mode = 'week'; rosterState.anchor = iso;
+        setRosterModeTab('week');
         renderRoster();
-        renderHours();
-        showToast('Shift added to ' + dayLabel + '.');
+        showToast('Shift added to ' + dateOf(iso).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' }) + '.');
       });
   }
   window.openShiftModal = openShiftModal;
@@ -450,9 +667,8 @@
     statLow.setAttribute('data-count', lowCount);
     statLow.textContent = '0';
 
-    // on shift "now": pick the Mid shift from today's roster row as a plausible demo
-    var todayRow = DATA.roster[ROSTER_TODAY_IDX];
-    var onNow = todayRow.shifts.filter(function (s) { return s.staff; });
+    // on shift "now": today's filled shifts
+    var onNow = rosterEntry(DEMO_TODAY).shifts.filter(function (s) { return s.staff; });
     document.getElementById('ov-onshift-count').textContent = onNow.length + ' today';
     document.getElementById('ov-onshift').innerHTML = onNow.map(function (s) {
       var st = staffById(s.staff);
@@ -618,16 +834,13 @@
     renderWhoAmI();
     renderRecipes();
     renderRoster();
-    renderHours();
-    renderHistory();
     renderInventory();
     renderDeliveries();
     renderOverview();
     renderTopFlavours();
 
-    var today = new Date(DATA.sales_days[DATA.sales_days.length - 1].iso);
+    var today = dateOf(DEMO_TODAY);
     document.getElementById('ov-date').textContent = today.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
-    document.getElementById('roster-week-label').textContent = 'Week of ' + DATA.roster[0].date;
 
     moveNavIndicator('overview');
     var overviewView = document.getElementById('view-overview');

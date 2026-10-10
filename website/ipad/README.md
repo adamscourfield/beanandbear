@@ -8,7 +8,7 @@ Open `index.html` directly, or serve the `website/` folder and visit `/ipad/`.
 
 - **Overview** — today's takings, who's on shift right now, low-stock alerts, recent deliveries.
 - **Recipes** — all 42 real flavours (from the recipe book), searchable and filterable by category, each opening into a detail panel with the story, "the point of this flavour," ingredients, and a tappable method checklist.
-- **Roster** — a real week, open shifts you can tap to sign up for (as whichever staff member is "signed in," switchable from the sidebar), hours-this-week per person, and a worked-shifts history.
+- **Roster** — a full year (2026) of scheduled shifts, browsable as a Week grid (tap an open shift to sign up as whichever staff member is "signed in"), a Month calendar (staffing dots per day, click through to that week), or a Year view (a heat-map card per month with scheduled hours and open-shift counts). Prev/Today/Next navigate within whichever mode is active; "Hours" and "shifts worked" below the grid track whatever period is on screen.
 - **Inventory** — stock levels with low-stock flags, a recent-deliveries log, and a "Receive" shortcut or a full "Log a delivery" form that actually bumps the displayed stock number.
 - **Budgets & Sales** — day/week/month totals, an animated trend chart (daily/weekly/monthly views), a top-flavours leaderboard, and a comparison against the business plan's own £92,000/year (≈£7,667/month) objective.
 
@@ -16,14 +16,14 @@ Open `index.html` directly, or serve the `website/` folder and visit `/ipad/`.
 
 Built to match the interaction quality of the reference prototype you shared (RELAY) — sliding-pill sidebar navigation, blurred/scaled page transitions, glass cards, animated counters and bar fills, a hand-drawn SVG trend chart with hover tooltips — but re-skinned entirely in Bean & Bear's own brand (Cormorant Garamond + Source Sans, forest/cream/gold, the walking-bear mark) rather than copying RELAY's own styling or content, which belonged to an unrelated teaching-analytics tool.
 
-Responsive down to iPad portrait width: the sidebar becomes a bottom tab bar below ~860px.
+Responsive down to iPad portrait width (the sidebar becomes a bottom tab bar below ~860px) and up to a full desktop/Mac browser window: page content caps at a comfortable reading width and is centred rather than stretching edge-to-edge on a wide display, with roomier padding throughout than the original iPad-only pass.
 
 The sidebar brand mark uses the real logo artwork (`website/assets/logo/`) — the vector bear icon and the "BEAN AND BEAR" wordmark, cropped from the official lockup files and stripped to transparent so they sit directly on the sidebar's gradient. No CSS-rendered logotype.
 
 ## The fabricated data
 
 - **Recipes** are real — pulled from `BeanAndBear_RecipeBook.pdf`.
-- **Staff, roster, inventory stock levels, deliveries, and sales figures** are invented for the demo, sized to roughly match the business plan's own numbers (e.g. sales in the same ballpark as the plan's 100 transactions/day case) so the screens feel proportionate rather than arbitrary. None of it is real trading data.
+- **Staff, roster, inventory stock levels, deliveries, and sales figures** are invented for the demo, sized to roughly match the business plan's own numbers (e.g. sales in the same ballpark as the plan's 100 transactions/day case) so the screens feel proportionate rather than arbitrary. None of it is real trading data. The roster's one real-feeling week (12–18 Oct 2026) is hand-placed; the rest of the year is filled in by a seeded, deterministic generator so Month and Year browsing always has something plausible to show.
 
 ## Turning this into something real
 
