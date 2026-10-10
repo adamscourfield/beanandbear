@@ -280,24 +280,29 @@
     var stepsHtml = r.m.map(function (step, i) {
       return '<div class="method-step" onclick="this.classList.toggle(\'done\')"><span class="snum">' + (i + 1) + '</span><span class="stext">' + step + '</span></div>';
     }).join('');
-    document.getElementById('recipe-drawer').innerHTML =
-      '<div class="drawer-hero"><img src="../assets/img/flavours/' + r.key + '.jpg" alt="" onerror="this.remove()">' +
-      '<button class="drawer-close" onclick="closeRecipe()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="drawer-body">' +
+    document.getElementById('recipe-page').innerHTML =
+      '<div class="rp-topbar">' +
+      '<button class="rp-close" onclick="closeRecipe()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>Close recipe</button>' +
       '<span class="chip gold">' + CAT_LABEL[r.cat] + '</span>' +
+      '</div>' +
+      '<div class="rp-body">' +
+      '<div class="rp-side drawer-body" style="padding:0">' +
+      '<div class="rp-hero"><img src="../assets/img/flavours/' + r.key + '.jpg" alt="" onerror="this.closest(\'.rp-hero\').remove()"></div>' +
       '<h2>' + r.n + '</h2><div class="tagline">' + r.tag + '</div>' +
       '<p class="story">' + r.story + '</p>' +
       '<div class="brief-box"><span class="lbl">The point of this flavour</span>' + r.brief + '</div>' +
       '<h3>Ingredients</h3>' + ingHtml +
-      '<h3>Method</h3><div class="method-steps">' + stepsHtml + '</div>' +
+      '</div>' +
+      '<div class="rp-main drawer-body" style="padding:0">' +
+      '<h3 style="margin-top:0">Method</h3><div class="method-steps">' + stepsHtml + '</div>' +
+      '</div>' +
       '</div>';
-    document.getElementById('recipe-drawer').classList.add('show');
-    document.getElementById('drawer-backdrop').classList.add('show');
+    document.getElementById('recipe-page').classList.add('show');
+    document.getElementById('recipe-page').scrollTo(0, 0);
   }
   window.openRecipe = openRecipe;
   function closeRecipe() {
-    document.getElementById('recipe-drawer').classList.remove('show');
-    document.getElementById('drawer-backdrop').classList.remove('show');
+    document.getElementById('recipe-page').classList.remove('show');
   }
   window.closeRecipe = closeRecipe;
 
@@ -682,7 +687,8 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       if (document.getElementById('modal-backdrop').classList.contains('show')) { hideModal(); return; }
-      if (document.getElementById('drawer-backdrop').classList.contains('show')) { closeRecipe(); return; }
+      if (document.getElementById('txn-drawer-backdrop').classList.contains('show')) { closeTransactions(); return; }
+      if (document.getElementById('recipe-page').classList.contains('show')) { closeRecipe(); return; }
       document.getElementById('whoami-wrap').classList.remove('open');
       return;
     }
@@ -893,6 +899,68 @@
     setTimeout(function () { fill.style.width = pct + '%'; }, 80);
   }
 
+  // ================= Transactions =================
+  var txnRange = '14';
+  function transactionsInRange() {
+    var days = txnRange === 'today' ? 0 : txnRange === '7' ? 6 : 13;
+    var start = addDays(DEMO_TODAY, -days);
+    return DATA.transactions.filter(function (t) { return t.iso >= start && t.iso <= DEMO_TODAY; });
+  }
+  function openTransactions() {
+    renderTransactions();
+    document.getElementById('txn-drawer').classList.add('show');
+    document.getElementById('txn-drawer-backdrop').classList.add('show');
+  }
+  window.openTransactions = openTransactions;
+  function closeTransactions() {
+    document.getElementById('txn-drawer').classList.remove('show');
+    document.getElementById('txn-drawer-backdrop').classList.remove('show');
+  }
+  window.closeTransactions = closeTransactions;
+  function setTxnRange(r) {
+    txnRange = r;
+    renderTransactions();
+  }
+  window.setTxnRange = setTxnRange;
+
+  function renderTransactions() {
+    var list = transactionsInRange().slice().sort(function (a, b) {
+      if (a.iso !== b.iso) return a.iso < b.iso ? 1 : -1;
+      return a.t < b.t ? 1 : -1;
+    });
+    var total = list.reduce(function (a, t) { return a + t.amt; }, 0);
+    var avg = list.length ? total / list.length : 0;
+    var rangeLabel = txnRange === 'today' ? 'today' : txnRange === '7' ? 'last 7 days' : 'last 14 days';
+    var payClass = { Card: 'card', 'Apple Pay': 'apple', Cash: 'cash' };
+
+    var rows = list.map(function (t) {
+      var dateLabel = dateOf(t.iso).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+      return '<tr><td style="white-space:nowrap">' + dateLabel + '</td><td style="white-space:nowrap">' + t.t + '</td><td>' + t.desc + '</td>' +
+        '<td><span class="txn-pay ' + payClass[t.pay] + '">' + t.pay + '</span></td>' +
+        '<td style="text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap">£' + t.amt.toFixed(2) + '</td></tr>';
+    }).join('');
+
+    var tabs = ['today', '7', '14'].map(function (r) {
+      var label = r === 'today' ? 'Today' : r === '7' ? 'Last 7 days' : 'Last 14 days';
+      return '<button class="pill-tab' + (txnRange === r ? ' active' : '') + '" onclick="setTxnRange(\'' + r + '\')">' + label + '</button>';
+    }).join('');
+
+    document.getElementById('txn-drawer').innerHTML =
+      '<div class="txn-head">' +
+      '<button class="drawer-close plain" onclick="closeTransactions()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
+      '<span class="eyebrow">Point of sale</span><h2>Transactions</h2>' +
+      '<div class="pill-tabs" style="margin-top:14px;display:inline-flex">' + tabs + '</div>' +
+      '<div class="txn-summary">' +
+      '<div><b>' + list.length + '</b><span>Transactions</span></div>' +
+      '<div><b>' + money(total) + '</b><span>Total, ' + rangeLabel + '</span></div>' +
+      '<div><b>£' + avg.toFixed(2) + '</b><span>Average</span></div>' +
+      '</div></div>' +
+      '<div class="txn-body"><div style="overflow-x:auto">' +
+      '<table class="data"><thead><tr><th>Date</th><th>Time</th><th>Items</th><th>Payment</th><th style="text-align:right">Amount</th></tr></thead>' +
+      '<tbody>' + (rows || '<tr><td colspan="5"><div class="empty">No transactions in this period.</div></td></tr>') + '</tbody></table>' +
+      '</div></div>';
+  }
+
   // ================= Init =================
   function init() {
     renderWhoAmI();
@@ -905,6 +973,10 @@
 
     var today = dateOf(DEMO_TODAY);
     document.getElementById('ov-date').textContent = today.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+
+    var allTxns = DATA.transactions;
+    var txnAvg = allTxns.reduce(function (a, t) { return a + t.amt; }, 0) / allTxns.length;
+    document.getElementById('txn-avg').textContent = '£' + txnAvg.toFixed(2);
 
     moveNavIndicator('overview');
     var overviewView = document.getElementById('view-overview');
