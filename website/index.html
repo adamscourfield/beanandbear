@@ -1,0 +1,908 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Bean and Bear Gelato · Flavours with a story</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gelato made on site, every flavour with a story.">
+<meta name="theme-color" content="#F7F1E6">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<input class="ctl" type="radio" name="view" id="v-home" checked aria-label="Home"><input class="ctl" type="radio" name="view" id="v-shop" aria-label="Shop"><input class="ctl" type="radio" name="sheet" id="sh-none" checked aria-label="Close"><input class="ctl" type="radio" name="sheet" id="sh-account"><input class="ctl" type="radio" name="sheet" id="sh-signed"><input class="ctl" type="radio" name="sheet" id="sh-basket"><input class="ctl" type="radio" name="sheet" id="sh-s-dark-chocolate"><input class="ctl" type="radio" name="sheet" id="sh-s-vanilla"><input class="ctl" type="radio" name="sheet" id="sh-s-wild-strawberry"><input class="ctl" type="radio" name="sheet" id="sh-s-tiramisu"><input class="ctl" type="radio" name="sheet" id="sh-s-lemon-meringue-pie"><input class="ctl" type="radio" name="sheet" id="sh-s-raspberry-pavlova"><input class="ctl" type="radio" name="sheet" id="sh-s-key-lime-pie"><input class="ctl" type="radio" name="sheet" id="sh-s-banoffee-pie"><input class="ctl" type="radio" name="sheet" id="sh-s-black-forest"><input class="ctl" type="radio" name="sheet" id="sh-s-salted-caramel"><input class="ctl" type="radio" name="sheet" id="sh-s-kulfi"><input class="ctl" type="radio" name="sheet" id="sh-s-roasted-pineapple"><input class="ctl" type="radio" name="sheet" id="sh-s-peach-melba"><input class="ctl" type="radio" name="sheet" id="sh-s-liquorice-blackcurrant"><input class="ctl" type="radio" name="sheet" id="sh-s-passionfruit"><input class="ctl" type="radio" name="sheet" id="sh-s-fig-honey"><input class="ctl" type="radio" name="sheet" id="sh-s-blood-orange"><input class="ctl" type="radio" name="sheet" id="sh-s-cherry-almond"><input class="ctl" type="radio" name="sheet" id="sh-s-chocolate-passionfruit"><input class="ctl" type="radio" name="sheet" id="sh-s-pistachio"><input class="ctl" type="radio" name="sheet" id="sh-s-milk-chocolate"><input class="ctl" type="radio" name="sheet" id="sh-s-cookies-cream"><input class="ctl" type="radio" name="sheet" id="sh-s-honeycomb"><input class="ctl" type="radio" name="sheet" id="sh-s-rum-raisin"><input class="ctl" type="radio" name="sheet" id="sh-s-salted-caramel-popcorn"><input class="ctl" type="radio" name="sheet" id="sh-s-kiwi-elderflower"><input class="ctl" type="radio" name="sheet" id="sh-s-earl-grey-lemon"><input class="ctl" type="radio" name="sheet" id="sh-s-white-chocolate-miso"><input class="ctl" type="radio" name="sheet" id="sh-s-coffee-cardamom"><input class="ctl" type="radio" name="sheet" id="sh-s-brown-butter-sage"><input class="ctl" type="radio" name="sheet" id="sh-s-pear-tonka-bean"><input class="ctl" type="radio" name="sheet" id="sh-s-hazelnut-gianduja"><input class="ctl" type="radio" name="sheet" id="sh-s-chai"><input class="ctl" type="radio" name="sheet" id="sh-s-olive-oil-sea-salt"><input class="ctl" type="radio" name="sheet" id="sh-s-black-sesame-honey"><input class="ctl" type="radio" name="sheet" id="sh-s-gooseberry-elderflower"><input class="ctl" type="radio" name="sheet" id="sh-s-maple-pecan-bourbon"><input class="ctl" type="radio" name="sheet" id="sh-s-rhubarb-custard"><input class="ctl" type="radio" name="sheet" id="sh-s-banana-peanut-chocolate"><input class="ctl" type="radio" name="sheet" id="sh-s-birthday-cake"><input class="ctl" type="radio" name="sheet" id="sh-s-chocolate-brownie"><input class="ctl" type="radio" name="sheet" id="sh-s-strawberry-cheesecake">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="goldg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDD6A2"/><stop offset=".6" stop-color="#D0A863"/><stop offset="1" stop-color="#C39A55"/></linearGradient></defs><symbol id="bear" viewBox="0 0 196 128.7"><path d="M195.80,29.00 L188.70,25.90 L177.60,13.50 L168.50,10.30 L162.40,0.00 L158.50,0.00 L149.40,10.10 L141.80,13.20 L123.80,15.30 L105.10,23.20 L73.60,27.40 L50.90,33.50 L32.20,44.40 L19.90,58.40 L8.10,94.10 L0.20,109.60 L0.30,121.50 L6.40,128.40 L23.40,127.90 L16.80,119.50 L37.60,101.30 L35.00,96.40 L36.90,93.70 L44.30,105.20 L46.20,121.10 L51.50,127.80 L75.70,128.40 L74.60,124.10 L65.70,120.60 L66.00,115.50 L71.90,105.60 L73.60,88.10 L76.80,96.00 L87.50,96.10 L94.70,93.20 L96.40,94.40 L97.00,121.10 L101.50,128.40 L118.60,128.40 L119.40,125.80 L114.70,123.90 L112.00,117.10 L126.10,90.30 L132.00,85.80 L133.30,87.80 L126.20,97.60 L124.70,105.50 L140.00,113.40 L144.10,117.50 L141.80,124.40 L144.60,127.00 L148.50,127.00 L154.80,120.50 L154.90,110.20 L145.30,93.70 L144.90,76.00 L153.20,59.50 L163.50,49.20 L191.60,40.90Z"/></symbol></svg>
+
+<!-- the only chrome: the bear, the account, the basket -->
+<label class="fl fl-bear press" for="v-home" aria-label="Home"><svg class="bear" viewBox="0 0 196 128.7" aria-hidden="true"><use href="#bear" fill="url(#goldg)"/></svg></label>
+<label class="fl fl-acct press" for="sh-account" aria-label="Account"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.6-3.6 3.5-5.6 7.2-5.6s6.6 2 7.2 5.6"/></svg></label>
+<label class="fl fl-basket press" for="sh-basket" aria-label="Basket, 2 items"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l-1 12h-11z"/><path d="M9 8V6.6a3 3 0 0 1 6 0V8"/></svg><span class="t">Basket</span><span class="n">2</span></label>
+
+<div class="views">
+
+<!-- HOME: the story, then ten flavours -->
+<section class="view" id="view-home">
+
+<section class="hero">
+  <img src="assets/img/hero-store.jpg" alt="The Bean and Bear Gelato shopfront: a deep green fascia, brass lights and a warm, plant-filled interior.">
+  <div class="mark"><div class="lockup"><svg class="bear" viewBox="0 0 196 128.7" aria-hidden="true"><use href="#bear" fill="url(#goldg)"/></svg><div class="wm">Bean <span class="and">and</span> Bear</div><span class="gelato">Gelato</span></div><p class="tagline">Flavours with a story.</p></div>
+</section>
+
+<section class="dark framed story center">
+  <div class="wrap narrow reveal">
+    <svg class="bear" viewBox="0 0 196 128.7" aria-hidden="true"><use href="#bear" fill="url(#goldg)"/></svg>
+    <p class="label">Flavours with a story</p>
+    <h2 class="display">Beautiful gelato —<br><em>family stories.</em></h2>
+    <hr class="rule c">
+    <p class="lead">Every flavour begins somewhere: a person, a place, a joke, a holiday, a childhood memory or something our family simply loves.</p>
+  </div>
+</section>
+
+<section class="sec family"><div class="wrap split">
+  <div class="reveal">
+    <p class="label">Our family</p>
+    <h2 class="h2" style="margin-top:1.1rem">A family story,<br>told through gelato.</h2>
+    <p class="it">Premium in craft. Warm in character.</p>
+    <hr class="rule">
+    <p class="p">Bean &amp; Bear began with making ice cream at home. In a busy family life, asking the children if they wanted to make ice cream had an unusual effect: everything else stopped. They came into the kitchen. We talked, shared things, laughed, messed around and made something together.</p>
+    <p class="p">We have always called our children either the Bean or the Bear. That is where the name came from.</p>
+    <p class="p">The deeper philosophy is simple. Family has brought extraordinary joy, meaning and resilience to life. Bean &amp; Bear celebrates those small moments through flavours connected to people, places, holidays, traditions and family stories.</p>
+  </div>
+  <div class="ph reveal"><img src="assets/img/family.jpg" alt="Three children laughing and eating ice cream cones at the counter."></div>
+</div></section>
+
+<section class="break" aria-label="The counter">
+  <img src="assets/img/hero-cone.jpg" alt="A server handing a child an ice cream cone across the counter.">
+  <div class="cap reveal"><p class="label">The counter</p></div>
+</section>
+
+<section class="sec gelato-sec home"><div class="wrap">
+  <h2 class="h2 reveal">The gelato.</h2>
+  <div class="favs reveal"><label class="fav press" for="sh-s-vanilla"><span class="pic"><span class="bgimg" role="img" aria-label="Vanilla gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-vanilla)"></span></span><b>Vanilla</b></label><label class="fav press" for="sh-s-dark-chocolate"><span class="pic"><span class="bgimg" role="img" aria-label="Dark Chocolate gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-dark-chocolate)"></span></span><b>Dark Chocolate</b></label><label class="fav press" for="sh-s-wild-strawberry"><span class="pic"><span class="bgimg" role="img" aria-label="Wild Strawberry gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-wild-strawberry)"></span></span><b>Wild Strawberry</b></label><label class="fav press" for="sh-s-pistachio"><span class="pic"><span class="bgimg" role="img" aria-label="Pistachio gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-pistachio)"></span></span><b>Pistachio</b></label><label class="fav press" for="sh-s-salted-caramel"><span class="pic"><span class="bgimg" role="img" aria-label="Salted Caramel gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-salted-caramel)"></span></span><b>Salted Caramel</b></label><label class="fav press" for="sh-s-tiramisu"><span class="pic"><span class="bgimg" role="img" aria-label="Tiramisu gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-tiramisu)"></span></span><b>Tiramisu</b></label><label class="fav press" for="sh-s-raspberry-pavlova"><span class="pic"><span class="bgimg" role="img" aria-label="Raspberry Pavlova gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-raspberry-pavlova)"></span></span><b>Raspberry Pavlova</b></label><label class="fav press" for="sh-s-passionfruit"><span class="pic"><span class="bgimg" role="img" aria-label="Passionfruit gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-passionfruit)"></span></span><b>Passionfruit</b></label><label class="fav press" for="sh-s-kulfi"><span class="pic"><span class="bgimg" role="img" aria-label="Kulfi gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-kulfi)"></span></span><b>Kulfi</b></label><label class="fav press" for="sh-s-black-forest"><span class="pic"><span class="bgimg" role="img" aria-label="Black Forest gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-black-forest)"></span></span><b>Black Forest</b></label>
+  </div>
+  <label class="shop-link press reveal" for="v-shop">Shop all 42 flavours <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></label>
+</div></section>
+
+<section class="sec delivery"><div class="wrap">
+  <h2 class="h2 reveal">To your door,<br>or from the shop.</h2>
+  <div class="dgrid">
+    <div class="dcol">
+      <div class="pc reveal">
+        <label for="pc">Check your postcode</label>
+        <input id="pc" type="text" inputmode="text" autocomplete="postal-code" placeholder="e.g. CM23 4EG" pattern="[Cc][Mm]2[234] ?[0-9][A-Za-z]{2}" required>
+        <p class="msg m-idle"><i>?</i><span>Enter your postcode.</span></p>
+        <p class="msg m-ok"><i>&#10003;</i><span>We deliver to you.</span></p>
+        <p class="msg m-no"><i>!</i><span>Not yet. You can collect from the shop.</span></p>
+      </div>
+      <div class="ph pot reveal"><img src="assets/img/pot.jpg" alt="A 500ml Bean and Bear take-home tub with an illustrated Wild Strawberry label, beside a kraft delivery box."></div>
+    </div>
+    <figure class="map reveal"><svg viewBox="0 0 400 400" role="img" aria-label="Illustrative map of an example delivery area around Bishop’s Stortford">
+<defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C9A05F" stop-opacity=".26"/><stop offset="1" stop-color="#C9A05F" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#F7F1E6" stroke-opacity=".05"/></pattern></defs>
+<rect width="400" height="400" fill="#0F2D23"/><rect width="400" height="400" fill="url(#grid)"/>
+<path d="M-10 262 C 60 214, 112 270, 172 236 S 292 172, 412 204" fill="none" stroke="#F7F1E6" stroke-opacity=".13" stroke-width="10" stroke-linecap="round"/>
+<g stroke="#F7F1E6" stroke-opacity=".16" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M204 -10 L196 410"/><path d="M-10 186 L410 214"/><path d="M58 -10 C 122 120, 252 282, 334 410"/><path d="M352 -10 C 300 112, 140 244, 40 410"/></g>
+<g stroke="#F7F1E6" stroke-opacity=".08" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M120 70 L302 122"/><path d="M96 326 L312 298"/><path d="M28 120 L150 150"/><path d="M262 40 L340 168"/><path d="M60 250 L130 340"/><path d="M290 250 L380 330"/></g>
+<circle cx="200" cy="200" r="196" fill="url(#glow)"/>
+<circle cx="200" cy="200" r="150" fill="none" stroke="#C9A05F" stroke-width="2.2"/>
+<circle cx="200" cy="200" r="92" fill="none" stroke="#C9A05F" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="3 6"/>
+<circle class="ping" cx="200" cy="200" r="34" fill="#C9A05F" fill-opacity=".5"/>
+<circle cx="200" cy="200" r="24" fill="#DDBC7C"/><circle cx="200" cy="200" r="24" fill="none" stroke="#F7F1E6" stroke-opacity=".7" stroke-width="1.5"/>
+<use href="#bear" x="185" y="190" width="30" height="19.7" fill="#0F2D23"/>
+<g font-family="SS, sans-serif" font-weight="600" fill="#F7F1E6"><text x="200" y="250" text-anchor="middle" font-size="12" letter-spacing="2.4" fill-opacity=".9">BISHOP’S STORTFORD</text>
+<text x="200" y="266" text-anchor="middle" font-size="9.5" letter-spacing="1" fill="#C9A05F">Shop site to be confirmed</text>
+<text x="200" y="38" text-anchor="middle" font-size="10" letter-spacing="2.6" fill="#C9A05F">EXAMPLE DELIVERY AREA</text></g></svg></figure>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><b>01</b><h3>Choose</h3></div><div class="step"><b>02</b><h3>Delivery or collection</h3></div>
+    <div class="step"><b>03</b><h3>Packed frozen</h3></div><div class="step"><b>04</b><h3>Enjoy</h3></div>
+  </div>
+</div></section>
+
+<section class="sec alt visit"><div class="wrap split rev">
+  <div class="reveal">
+    <h2 class="h2">Coming to<br>Bishop’s Stortford.</h2>
+    <div class="notify"><label class="sr" for="em">Email address</label><input id="em" type="email" placeholder="Your email address"><label class="btn press" for="sh-none">Tell me when</label></div>
+  </div>
+  <div class="ph reveal" style="aspect-ratio:5/4"><img src="assets/img/linger.jpg" alt="A woman enjoying a cup of gelato at a marble table, with wildflowers beside her."></div>
+</div></section>
+
+<footer class="dark framed foot">
+  <div class="lockup reveal"><svg class="bear" viewBox="0 0 196 128.7" aria-hidden="true"><use href="#bear" fill="url(#goldg)"/></svg><div class="wm">Bean <span class="and">and</span> Bear</div><span class="gelato">Gelato</span></div>
+  <p class="tagline reveal">Beautiful gelato. Proper coffee. Stories worth sharing.</p>
+  <div class="soc reveal" aria-label="Follow Bean and Bear">
+    <a class="press" href="#" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l14 14M19 5L5 19"/></svg></a>
+    <a class="press ig" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.3" y="3.3" width="17.4" height="17.4" rx="5.2"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.2" cy="6.8" r=".2" fill="currentColor" stroke="none"/></svg></a>
+  </div>
+  <a class="press mail" href="mailto:hi@beanandbear.uk">hi@beanandbear.uk</a>
+  <nav aria-label="Footer"><label for="sh-account">Account</label><label for="sh-basket">Basket</label></nav>
+  <small>© Bean and Bear Gelato</small>
+</footer>
+
+</section>
+
+<!-- SHOP: every flavour -->
+<section class="view" id="view-shop">
+  <div class="wrap clear">
+    <h2 class="h2">The flavours.</h2>
+    <input class="fx" type="radio" name="f" id="f-all" checked aria-label="All"><input class="fx" type="radio" name="f" id="f-fruit" aria-label="Fruit"><input class="fx" type="radio" name="f" id="f-choc" aria-label="Chocolate and caramel"><input class="fx" type="radio" name="f" id="f-pud" aria-label="Puddings"><input class="fx" type="radio" name="f" id="f-cream" aria-label="Creamy and nutty"><input class="fx" type="radio" name="f" id="f-diff" aria-label="Something different">
+    <div class="chips" role="group" aria-label="Filter flavours"><label class="press" for="f-all">All</label><label class="press" for="f-fruit">Fruit</label><label class="press" for="f-choc">Chocolate and caramel</label><label class="press" for="f-pud">Puddings</label><label class="press" for="f-cream">Creamy and nutty</label><label class="press" for="f-diff">Something different</label></div>
+    <div class="grid">
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-dark-chocolate"><span class="pic"><span class="bgimg" role="img" aria-label="Dark Chocolate gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-dark-chocolate)"></span></span><span class="tx"><span class="nm">Dark Chocolate</span><span class="cu">Cocoa · Dark chocolate</span><span class="tg">The chocolate that changed chocolate.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="cream"><label class="card press" for="sh-s-vanilla"><span class="pic"><span class="bgimg" role="img" aria-label="Vanilla gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-vanilla)"></span></span><span class="tx"><span class="nm">Vanilla</span><span class="cu">Madagascan vanilla</span><span class="tg">Or, as my girls call it, “nilla”.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-wild-strawberry"><span class="pic"><span class="bgimg" role="img" aria-label="Wild Strawberry gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-wild-strawberry)"></span></span><span class="tx"><span class="nm">Wild Strawberry</span><span class="cu">Strawberry · Lemon verbena</span><span class="tg">Pick one. Eat two.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-tiramisu"><span class="pic"><span class="bgimg" role="img" aria-label="Tiramisu gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-tiramisu)"></span></span><span class="tx"><span class="nm">Tiramisu</span><span class="cu">Espresso · Mascarpone</span><span class="tg">My first proper Italian dessert.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-lemon-meringue-pie"><span class="pic"><span class="bgimg" role="img" aria-label="Lemon Meringue Pie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-lemon-meringue-pie)"></span></span><span class="tx"><span class="nm">Lemon Meringue Pie</span><span class="cu">Lemon curd · Meringue</span><span class="tg">My wife’s favourite dessert.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-raspberry-pavlova"><span class="pic"><span class="bgimg" role="img" aria-label="Raspberry Pavlova gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-raspberry-pavlova)"></span></span><span class="tx"><span class="nm">Raspberry Pavlova</span><span class="cu">Raspberry · Meringue</span><span class="tg">Nina’s favourite.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-key-lime-pie"><span class="pic"><span class="bgimg" role="img" aria-label="Key Lime Pie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-key-lime-pie)"></span></span><span class="tx"><span class="nm">Key Lime Pie</span><span class="cu">Lime · Meringue</span><span class="tg">Florida sunshine in a scoop.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-banoffee-pie"><span class="pic"><span class="bgimg" role="img" aria-label="Banoffee Pie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-banoffee-pie)"></span></span><span class="tx"><span class="nm">Banoffee Pie</span><span class="cu">Banana · Dulce de leche · Biscuit</span><span class="tg">Born around a campfire.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-black-forest"><span class="pic"><span class="bgimg" role="img" aria-label="Black Forest gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-black-forest)"></span></span><span class="tx"><span class="nm">Black Forest</span><span class="cu">Cherry · Dark chocolate</span><span class="tg">The Christmas pudding of champions.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-salted-caramel"><span class="pic"><span class="bgimg" role="img" aria-label="Salted Caramel gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-salted-caramel)"></span></span><span class="tx"><span class="nm">Salted Caramel</span><span class="cu">Burnt caramel · Brown butter shortbread</span><span class="tg">Mum’s favourite.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="cream"><label class="card press" for="sh-s-kulfi"><span class="pic"><span class="bgimg" role="img" aria-label="Kulfi gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-kulfi)"></span></span><span class="tx"><span class="nm">Kulfi</span><span class="cu">Mango · Saffron · Cardamom</span><span class="tg">For Mum and Dad.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-roasted-pineapple"><span class="pic"><span class="bgimg" role="img" aria-label="Roasted Pineapple gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-roasted-pineapple)"></span></span><span class="tx"><span class="nm">Roasted Pineapple</span><span class="cu">Pineapple · Coconut · Lime</span><span class="tg">No worries. No problems.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-peach-melba"><span class="pic"><span class="bgimg" role="img" aria-label="Peach Melba gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-peach-melba)"></span></span><span class="tx"><span class="nm">Peach Melba</span><span class="cu">Peach · Raspberry</span><span class="tg">The peach without the problem.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-liquorice-blackcurrant"><span class="pic"><span class="bgimg" role="img" aria-label="Liquorice and Blackcurrant gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-liquorice-blackcurrant)"></span></span><span class="tx"><span class="nm">Liquorice &amp; Blackcurrant</span><span class="cu">Liquorice · Blackcurrant</span><span class="tg">One each. That’s your lot.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-passionfruit"><span class="pic"><span class="bgimg" role="img" aria-label="Passionfruit gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-passionfruit)"></span></span><span class="tx"><span class="nm">Passionfruit</span><span class="cu">Passionfruit</span><span class="tg">Orla thinks they look like bogies.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-fig-honey"><span class="pic"><span class="bgimg" role="img" aria-label="Fig and Honey gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-fig-honey)"></span></span><span class="tx"><span class="nm">Fig &amp; Honey</span><span class="cu">Fig · Honey · Mascarpone</span><span class="tg">Technically, they’re on our side of the fence.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-blood-orange"><span class="pic"><span class="bgimg" role="img" aria-label="Blood Orange gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-blood-orange)"></span></span><span class="tx"><span class="nm">Blood Orange</span><span class="cu">Orange · Campari</span><span class="tg">The orange grin.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-cherry-almond"><span class="pic"><span class="bgimg" role="img" aria-label="Cherry and Almond gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-cherry-almond)"></span></span><span class="tx"><span class="nm">Cherry &amp; Almond</span><span class="cu">Cherry · Almond</span><span class="tg">Cherries are showing off.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-chocolate-passionfruit"><span class="pic"><span class="bgimg" role="img" aria-label="Chocolate and Passionfruit gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-chocolate-passionfruit)"></span></span><span class="tx"><span class="nm">Chocolate &amp; Passionfruit</span><span class="cu">Dark chocolate · Passionfruit</span><span class="tg">Christmas, with a surprise.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="cream"><label class="card press" for="sh-s-pistachio"><span class="pic"><span class="bgimg" role="img" aria-label="Pistachio gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-pistachio)"></span></span><span class="tx"><span class="nm">Pistachio</span><span class="cu">Pistachio · Honey · Sea salt</span><span class="tg">The first shop of the holiday.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-milk-chocolate"><span class="pic"><span class="bgimg" role="img" aria-label="Milk Chocolate gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-milk-chocolate)"></span></span><span class="tx"><span class="nm">Milk Chocolate</span><span class="cu">Milk chocolate · Cocoa</span><span class="tg">A Curly Wurly when you need it.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-cookies-cream"><span class="pic"><span class="bgimg" role="img" aria-label="Cookies and Cream gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-cookies-cream)"></span></span><span class="tx"><span class="nm">Cookies &amp; Cream</span><span class="cu">Vanilla · Chocolate cookies</span><span class="tg">The Oreo milkshake, frozen.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-honeycomb"><span class="pic"><span class="bgimg" role="img" aria-label="Honeycomb gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-honeycomb)"></span></span><span class="tx"><span class="nm">Honeycomb</span><span class="cu">Warm caramel · Honeycomb</span><span class="tg">A very sticky kitchen.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="cream"><label class="card press" for="sh-s-rum-raisin"><span class="pic"><span class="bgimg" role="img" aria-label="Rum and Raisin gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-rum-raisin)"></span></span><span class="tx"><span class="nm">Rum &amp; Raisin</span><span class="cu">Dark rum · Raisins</span><span class="tg">Meg’s favourite.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-salted-caramel-popcorn"><span class="pic"><span class="bgimg" role="img" aria-label="Salted Caramel Popcorn gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-salted-caramel-popcorn)"></span></span><span class="tx"><span class="nm">Salted Caramel Popcorn</span><span class="cu">Popcorn · Dark caramel · Sea salt</span><span class="tg">The cinema isn’t the cinema without popcorn.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-kiwi-elderflower"><span class="pic"><span class="bgimg" role="img" aria-label="Kiwi and Elderflower gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-kiwi-elderflower)"></span></span><span class="tx"><span class="nm">Kiwi &amp; Elderflower</span><span class="cu">Kiwi · Elderflower</span><span class="tg">Yes, I eat the skin.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-earl-grey-lemon"><span class="pic"><span class="bgimg" role="img" aria-label="Earl Grey and Lemon gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-earl-grey-lemon)"></span></span><span class="tx"><span class="nm">Earl Grey &amp; Lemon</span><span class="cu">Earl Grey · Lemon</span><span class="tg">You can always tell when Mum’s been here.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-white-chocolate-miso"><span class="pic"><span class="bgimg" role="img" aria-label="White Chocolate and Miso gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-white-chocolate-miso)"></span></span><span class="tx"><span class="nm">White Chocolate &amp; Miso</span><span class="cu">White chocolate · Miso · Sesame brittle</span><span class="tg">Sweet, with a little something unexpected.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-coffee-cardamom"><span class="pic"><span class="bgimg" role="img" aria-label="Coffee and Cardamom gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-coffee-cardamom)"></span></span><span class="tx"><span class="nm">Coffee &amp; Cardamom</span><span class="cu">Espresso · Green cardamom</span><span class="tg">Meg has never learned to use the coffee machine.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-brown-butter-sage"><span class="pic"><span class="bgimg" role="img" aria-label="Brown Butter and Sage gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-brown-butter-sage)"></span></span><span class="tx"><span class="nm">Brown Butter &amp; Sage</span><span class="cu">Brown butter · Sage</span><span class="tg">We had to find something to do with all the sage.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-pear-tonka-bean"><span class="pic"><span class="bgimg" role="img" aria-label="Pear and Tonka Bean gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-pear-tonka-bean)"></span></span><span class="tx"><span class="nm">Pear &amp; Tonka Bean</span><span class="cu">Pear · Tonka bean</span><span class="tg">Niamh’s first bite.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="cream"><label class="card press" for="sh-s-hazelnut-gianduja"><span class="pic"><span class="bgimg" role="img" aria-label="Hazelnut and Gianduja gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-hazelnut-gianduja)"></span></span><span class="tx"><span class="nm">Hazelnut &amp; Gianduja</span><span class="cu">Roasted hazelnut · Gianduja</span><span class="tg">There is almost always hazelnut involved.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-chai"><span class="pic"><span class="bgimg" role="img" aria-label="Chai gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-chai)"></span></span><span class="tx"><span class="nm">Chai</span><span class="cu">Assam tea · Cardamom · Cinnamon</span><span class="tg">The world’s largest tea cupboard. Probably.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-olive-oil-sea-salt"><span class="pic"><span class="bgimg" role="img" aria-label="Olive Oil and Sea Salt gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-olive-oil-sea-salt)"></span></span><span class="tx"><span class="nm">Olive Oil &amp; Sea Salt</span><span class="cu">Extra-virgin olive oil · Sea salt</span><span class="tg">Basically health food.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-black-sesame-honey"><span class="pic"><span class="bgimg" role="img" aria-label="Black Sesame and Honey gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-black-sesame-honey)"></span></span><span class="tx"><span class="nm">Black Sesame &amp; Honey</span><span class="cu">Black sesame · Honey</span><span class="tg">Sweet. Savoury. Somewhere in between.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="fruit"><label class="card press" for="sh-s-gooseberry-elderflower"><span class="pic"><span class="bgimg" role="img" aria-label="Gooseberry and Elderflower gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-gooseberry-elderflower)"></span></span><span class="tx"><span class="nm">Gooseberry &amp; Elderflower</span><span class="cu">Gooseberry · Elderflower</span><span class="tg">Long summers in Grandma’s garden.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="diff"><label class="card press" for="sh-s-maple-pecan-bourbon"><span class="pic"><span class="bgimg" role="img" aria-label="Maple, Pecan and Bourbon gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-maple-pecan-bourbon)"></span></span><span class="tx"><span class="nm">Maple, Pecan &amp; Bourbon</span><span class="cu">Maple · Toasted pecan · Bourbon</span><span class="tg">Pancakes, but for grown-ups.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-rhubarb-custard"><span class="pic"><span class="bgimg" role="img" aria-label="Rhubarb and Custard gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-rhubarb-custard)"></span></span><span class="tx"><span class="nm">Rhubarb &amp; Custard</span><span class="cu">Rhubarb · Vanilla custard</span><span class="tg">A pound to spend. Choose wisely.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-banana-peanut-chocolate"><span class="pic"><span class="bgimg" role="img" aria-label="Banana, Peanut and Chocolate gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-banana-peanut-chocolate)"></span></span><span class="tx"><span class="nm">Banana, Peanut &amp; Chocolate</span><span class="cu">Banana · Roasted peanut · Dark chocolate</span><span class="tg">The breakfast of champions. Sort of.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-birthday-cake"><span class="pic"><span class="bgimg" role="img" aria-label="Birthday Cake gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-birthday-cake)"></span></span><span class="tx"><span class="nm">Birthday Cake</span><span class="cu">Vanilla · White chocolate · Cake pieces</span><span class="tg">The one day nobody’s counting.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="choc"><label class="card press" for="sh-s-chocolate-brownie"><span class="pic"><span class="bgimg" role="img" aria-label="Chocolate Brownie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-chocolate-brownie)"></span></span><span class="tx"><span class="nm">Chocolate Brownie</span><span class="cu">Dark chocolate · Fudgy brownie</span><span class="tg">Absolutely no attempt to be sensible.</span></span><span class="plate">Discover</span></label></div>
+      <div class="item" data-c="pud"><label class="card press" for="sh-s-strawberry-cheesecake"><span class="pic"><span class="bgimg" role="img" aria-label="Strawberry Cheesecake gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-strawberry-cheesecake)"></span></span><span class="tx"><span class="nm">Strawberry Cheesecake</span><span class="cu">Strawberry · Cream cheese · Biscuit</span><span class="tg">What’s for pud?</span></span><span class="plate">Discover</span></label></div>
+    </div>
+    <p class="fine-d" style="color:var(--faint)">Allergen information to follow.</p>
+    <div style="height:3rem"></div>
+  </div>
+</section>
+
+</div>
+
+<!-- account, with social sign-in (mock) -->
+<div class="ov" id="ov-account" role="dialog" aria-label="Account">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh ctr">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <svg class="bear" viewBox="0 0 196 128.7" aria-hidden="true"><use href="#bear" fill="url(#goldg)"/></svg>
+    <h2>Welcome.</h2>
+    <p class="it">Sign in to keep your orders and favourite flavours.</p>
+    <div class="sso-list"><label class="sso press" for="sh-signed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 10.2v3.9h5.5c-.2 1.3-1.6 3.8-5.5 3.8-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.9 3.2 14.8 2.3 12.2 2.3 7 2.3 2.8 6.5 2.8 11.8s4.2 9.5 9.4 9.5c5.4 0 9-3.8 9-9.2 0-.6-.1-1.1-.2-1.6h-8.8z"/></svg><span>Continue with Google</span></label><label class="sso press" for="sh-signed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 1.43c0 1.14-.42 2.22-1.24 3.2-.98 1.16-2.16 1.83-3.44 1.73-.02-1.1.44-2.24 1.24-3.14.86-.98 2.2-1.68 3.44-1.79zM20.9 17.1c-.55 1.27-.81 1.84-1.52 2.96-1 1.56-2.4 3.5-4.14 3.52-1.55.02-1.95-1-4.06-.99-2.1.01-2.54 1.01-4.09.99-1.74-.02-3.07-1.77-4.07-3.33C.3 16.9-.1 11.5 2.5 8.6c1.25-1.37 3.03-2.17 4.7-2.17 1.75 0 2.85 1 4.3 1 1.4 0 2.25-1 4.28-1 1.5 0 3.1.82 4.24 2.24-3.72 2.04-3.12 7.36.61 8.98z"/></svg><span>Continue with Apple</span></label><label class="sso press" for="sh-signed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg><span>Continue with Facebook</span></label></div>
+    <div class="or">or</div>
+    <div class="field" style="text-align:left"><label for="mail">Email address</label><input id="mail" type="email" placeholder="you@example.com"><label class="btn block press" for="sh-signed" style="margin-top:.8rem">Continue with email</label></div>
+    <p class="fine">Nothing is saved.</p>
+  </div>
+</div>
+<div class="ov" id="ov-signed" role="dialog" aria-label="Signed in">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh ctr">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <svg class="bear" viewBox="0 0 196 128.7" aria-hidden="true"><use href="#bear" fill="url(#goldg)"/></svg>
+    <h2>You’re signed in.</h2>
+    <p class="it">Welcome to Bean &amp; Bear.</p>
+    <label class="btn block press" for="sh-none" style="margin-top:1.6rem">Choose some gelato</label>
+    <label class="btn block press" for="sh-basket" style="margin-top:.7rem;background:transparent;color:var(--forest)">View basket</label>
+  </div>
+</div>
+
+<!-- basket (mock), with delivery or collection -->
+<div class="ov dr" id="ov-basket" role="dialog" aria-label="Basket">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh bsk">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <input class="dlr" type="radio" name="dl" id="dl-d" checked aria-label="Delivery"><input class="dlr" type="radio" name="dl" id="dl-c" aria-label="Collect from the shop">
+    <h2>Your basket</h2>
+    <p class="it" style="font-size:1.1rem">2 tubs</p>
+    <div class="lines">
+      <div class="bl"><div class="thumb"><span class="bgimg" role="img" aria-label="" style="background-image:var(--p-vanilla)"></span></div><div><h3>Vanilla</h3><p class="meta">500ml tub</p><div class="qty"><span>−</span><span>1</span><span>+</span></div></div><div class="amt">£10.00</div></div>
+      <div class="bl"><div class="thumb"><span class="bgimg" role="img" aria-label="" style="background-image:var(--p-dark-chocolate)"></span></div><div><h3>Dark Chocolate</h3><p class="meta">1 litre tub</p><div class="qty"><span>−</span><span>1</span><span>+</span></div></div><div class="amt">£18.00</div></div>
+    </div>
+    <div class="dl">
+      <div class="k">How would you like it?</div>
+      <div class="tiles"><label class="tile t-d" for="dl-d"><b>Delivery</b><span>Example fee £4.95</span></label><label class="tile t-c" for="dl-c"><b>Collect</b><span>Free, from the shop</span></label></div>
+      <div class="slots"><span>Fri</span><span class="on">Sat</span><span>Sun</span><em>Example slots</em></div>
+      <p class="hint">Choose a collection time at checkout.</p>
+    </div>
+    <div class="totals">
+      <div class="trow"><span>Subtotal</span><span>£28.00</span></div>
+      <div class="trow"><span>Delivery</span><span><span class="fee-d">£4.95</span><span class="fee-c">£0.00</span></span></div>
+      <div class="trow big"><span>Total</span><span><span class="tot-d">£32.95</span><span class="tot-c">£28.00</span></span></div>
+      <p class="fine" style="margin-top:.4rem">Prices include VAT. Fees and slots are examples.</p>
+      <label class="btn block press" for="sh-basket">Checkout</label>
+      <label class="keep" for="sh-none">Keep shopping</label>
+    </div>
+  </div>
+</div>
+
+<div class="ov" id="ov-s-dark-chocolate" role="dialog" aria-label="Dark Chocolate">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Dark Chocolate gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-dark-chocolate)"></span></div>
+    <div class="tx">
+      <h2>Dark Chocolate</h2>
+      <p class="it">The chocolate that changed chocolate.</p>
+      <p class="body">I never really liked Easter eggs. They always seemed to taste of… not very much. Then I tried proper 80% dark chocolate and it completely changed what I thought chocolate could be. This is the gelato version of that moment: dark, intense and unapologetically chocolatey.</p>
+      <div class="facet"><h4>The idea</h4><p>Deep, adult and unmistakably chocolate-led: high cocoa intensity, restrained sweetness and a clean finish.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Cocoa · Dark chocolate</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-vanilla" role="dialog" aria-label="Vanilla">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Vanilla gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-vanilla)"></span></div>
+    <div class="tx">
+      <h2>Vanilla</h2>
+      <p class="it">Or, as my girls call it, “nilla”.</p>
+      <p class="body">Nothing beats a Mr Whippy in the park after pushing the girls on the swings. It isn’t complicated or sophisticated. It’s just one of those little moments that makes you happy. Vanilla ice cream will always remind me of that.</p>
+      <div class="facet"><h4>The idea</h4><p>Simple only in appearance: creamy, fragrant Madagascan vanilla with enough richness to feel luxurious but never heavy.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Madagascan vanilla</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-wild-strawberry" role="dialog" aria-label="Wild Strawberry">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Wild Strawberry gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-wild-strawberry)"></span></div>
+    <div class="tx">
+      <h2>Wild Strawberry</h2>
+      <p class="it">Pick one. Eat two.</p>
+      <p class="body">Every year we go strawberry picking as a family. In theory, anyway. Mum and Dad do most of the picking while the children eat their way through the field. Then comes the awkward bit at the till, pretending we have no idea where all those red smudges around their mouths came from.</p>
+      <div class="facet"><h4>The idea</h4><p>Fresh strawberry first, lifted by lemon verbena; bright, summery and recognisably fruit-led.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Strawberry · Lemon verbena</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-tiramisu" role="dialog" aria-label="Tiramisu">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Tiramisu gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-tiramisu)"></span></div>
+    <div class="tx">
+      <h2>Tiramisu</h2>
+      <p class="it">My first proper Italian dessert.</p>
+      <p class="body">Tiramisu was the first dessert I ever ordered in an Italian restaurant. Coffee, mascarpone, cocoa – I’d never had anything quite like it. There still isn’t anything quite like it. So ours doesn’t try to reinvent it. It just tries to do it justice.</p>
+      <div class="facet"><h4>The idea</h4><p>Coffee, mascarpone and cocoa in balance. It should taste like tiramisu, not merely coffee ice cream.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Espresso · Mascarpone</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-lemon-meringue-pie" role="dialog" aria-label="Lemon Meringue Pie">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Lemon Meringue Pie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-lemon-meringue-pie)"></span></div>
+    <div class="tx">
+      <h2>Lemon Meringue Pie</h2>
+      <p class="it">My wife’s favourite dessert.</p>
+      <p class="body">I once made her a lemon meringue pie and dropped the entire thing while taking it out of the oven. I ate it off the floor with a spoon. I have no regrets.</p>
+      <div class="facet"><h4>The idea</h4><p>Creamy lemon-pie character with real acidity and sweet meringue contrast; indulgent without becoming cloying.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Lemon curd · Meringue</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-raspberry-pavlova" role="dialog" aria-label="Raspberry Pavlova">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Raspberry Pavlova gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-raspberry-pavlova)"></span></div>
+    <div class="tx">
+      <h2>Raspberry Pavlova</h2>
+      <p class="it">Nina’s favourite.</p>
+      <p class="body">If I were on Desert Island Discs, raspberries would be the one thing I’d take with me. Although, come to think of it, I don’t think you’re allowed to take food. Either way, I’m taking raspberries. And Nina would approve.</p>
+      <div class="facet"><h4>The idea</h4><p>Sharp raspberry, creamy base and crisp-sweet meringue contrast. Raspberry must remain the star.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Raspberry · Meringue</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-key-lime-pie" role="dialog" aria-label="Key Lime Pie">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Key Lime Pie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-key-lime-pie)"></span></div>
+    <div class="tx">
+      <h2>Key Lime Pie</h2>
+      <p class="it">Florida sunshine in a scoop.</p>
+      <p class="body">Florida sun. Disney World. Mickey Mouse. American diners. Key lime pie. Bliss. This is our little taste of Florida, without the nine-hour flight.</p>
+      <div class="facet"><h4>The idea</h4><p>Tangy lime, creamy pie filling and biscuit/meringue cues; bright enough to cut through the dairy.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Lime · Meringue</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-banoffee-pie" role="dialog" aria-label="Banoffee Pie">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Banoffee Pie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-banoffee-pie)"></span></div>
+    <div class="tx">
+      <h2>Banoffee Pie</h2>
+      <p class="it">Born around a campfire.</p>
+      <p class="body">We used to camp in France. After the barbecue, we’d take old bananas, stuff them with bits of Snickers, wrap them in foil and bury them in the embers. Ten minutes later you’d be scraping warm, gooey, caramel-chocolate banana from the skin with a spoon. This is the slightly more civilised version.</p>
+      <div class="facet"><h4>The idea</h4><p>Roasted banana, caramel depth and biscuit warmth. Generous and nostalgic rather than simply sugary.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Banana · Dulce de leche · Biscuit</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-black-forest" role="dialog" aria-label="Black Forest">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Black Forest gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-black-forest)"></span></div>
+    <div class="tx">
+      <h2>Black Forest</h2>
+      <p class="it">The Christmas pudding of champions.</p>
+      <p class="body">It reminds me of pulling a frozen Black Forest gateau from the freezer at Christmas, waiting approximately a billion hours for it to defrost, then demolishing it as though nobody had fed us for a week. Cherry. Chocolate. Christmas. Magnificent.</p>
+      <div class="facet"><h4>The idea</h4><p>Dark chocolate and sour cherry with a grown-up bitterness; rich, festive and clearly Black Forest.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Cherry · Dark chocolate</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-salted-caramel" role="dialog" aria-label="Salted Caramel">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Salted Caramel gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-salted-caramel)"></span></div>
+    <div class="tx">
+      <h2>Salted Caramel</h2>
+      <p class="it">Mum’s favourite.</p>
+      <p class="body">Slightly burnt. Ever so sweet. Buttery. Salty. Some flavours belong to summer. Some belong to winter. Salted caramel somehow belongs to both. Mum would choose this one.</p>
+      <div class="facet"><h4>The idea</h4><p>Caramel taken just far enough for bitterness, then balanced with butter, salt and shortbread.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Burnt caramel · Brown butter shortbread</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-kulfi" role="dialog" aria-label="Kulfi">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Kulfi gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-kulfi)"></span></div>
+    <div class="tx">
+      <h2>Kulfi</h2>
+      <p class="it">For Mum and Dad.</p>
+      <p class="body">My mum and dad loved travelling around India, searching for wonderful flora and fauna before relaxing at the end of the day with a mango lassi. Mango, saffron and cardamom. This is my little homage to their happiness in those moments.</p>
+      <div class="facet"><h4>The idea</h4><p>Mango supported by saffron and cardamom; aromatic and rounded, with spice present but never perfumed.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Mango · Saffron · Cardamom</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-roasted-pineapple" role="dialog" aria-label="Roasted Pineapple">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Roasted Pineapple gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-roasted-pineapple)"></span></div>
+    <div class="tx">
+      <h2>Roasted Pineapple</h2>
+      <p class="it">No worries. No problems.</p>
+      <p class="body">This one tastes like holidays. Sitting beside a pool with a pina colada and absolutely nothing to worry about. Except perhaps how quickly the drink seems to be disappearing. Pineapple, coconut and lime. Holiday mode activated.</p>
+      <div class="facet"><h4>The idea</h4><p>Roasted pineapple sweetness with coconut and lime freshness; holiday flavour without becoming cocktail syrup.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Pineapple · Coconut · Lime</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-peach-melba" role="dialog" aria-label="Peach Melba">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Peach Melba gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-peach-melba)"></span></div>
+    <div class="tx">
+      <h2>Peach Melba</h2>
+      <p class="it">The peach without the problem.</p>
+      <p class="body">Meg is afraid of peaches. Not the taste. The fur. She thinks it’s deeply weird that a fruit should be furry, and when you think about it, she may have a point. So this is our attempt at eating peaches without having to deal with the fur.</p>
+      <div class="facet"><h4>The idea</h4><p>Soft ripe peach with raspberry acidity; elegant fruit flavour and a clean finish.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Peach · Raspberry</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-liquorice-blackcurrant" role="dialog" aria-label="Liquorice &amp; Blackcurrant">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Liquorice and Blackcurrant gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-liquorice-blackcurrant)"></span></div>
+    <div class="tx">
+      <h2>Liquorice &amp; Blackcurrant</h2>
+      <p class="it">One each. That’s your lot.</p>
+      <p class="body">On long car journeys, Mum always kept a packet of liquorice and blackcurrant sweets in the glove compartment. If my sister and I managed not to tear each other’s eyes out, we could have one. We only ever got one.</p>
+      <div class="facet"><h4>The idea</h4><p>Dark liquorice against tart blackcurrant. Distinctive, nostalgic and deliberately not too sweet.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Liquorice · Blackcurrant</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-passionfruit" role="dialog" aria-label="Passionfruit">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Passionfruit gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-passionfruit)"></span></div>
+    <div class="tx">
+      <h2>Passionfruit</h2>
+      <p class="it">Orla thinks they look like bogies.</p>
+      <p class="body">She isn’t wrong. And she’d know. She’s eaten a lot of bogies. Personally, I prefer passionfruit. It’s my favourite. So this one has more passionfruit than you can shake a stick at: sharp, smooth, ridiculously moreish and considerably better than bogies.</p>
+      <div class="facet"><h4>The idea</h4><p>An unapologetically intense passionfruit flavour: sharp, aromatic, smooth and refreshing.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Passionfruit</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-fig-honey" role="dialog" aria-label="Fig &amp; Honey">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Fig and Honey gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-fig-honey)"></span></div>
+    <div class="tx">
+      <h2>Fig &amp; Honey</h2>
+      <p class="it">Technically, they’re on our side of the fence.</p>
+      <p class="body">Our neighbour has a fig tree that leans over our fence. Every year, Dad and I grab as many ripe figs as we can and munch them before the birds get there. It feels slightly like stealing. It tastes considerably better.</p>
+      <div class="facet"><h4>The idea</h4><p>Ripe fig, floral honey and creamy mascarpone; soft, mellow and gently luxurious.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Fig · Honey · Mascarpone</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-blood-orange" role="dialog" aria-label="Blood Orange">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Blood Orange gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-blood-orange)"></span></div>
+    <div class="tx">
+      <h2>Blood Orange</h2>
+      <p class="it">The orange grin.</p>
+      <p class="body">There are few things funnier than watching your children discover the orange grin. You know the one: wedge an orange segment in front of your teeth and grin like a complete lunatic. It never gets old. Ours adds a splash of Campari. That’s for the grown-ups.</p>
+      <div class="facet"><h4>The idea</h4><p>A clean blood-orange sorbet with adult Campari bitterness sitting behind the fruit.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Orange · Campari</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-cherry-almond" role="dialog" aria-label="Cherry &amp; Almond">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Cherry and Almond gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-cherry-almond)"></span></div>
+    <div class="tx">
+      <h2>Cherry &amp; Almond</h2>
+      <p class="it">Cherries are showing off.</p>
+      <p class="body">God made the earth, the sea, the stars, the sun, the animals and people. Then, apparently, he had a little bit of special magic left over. So he made cherries.</p>
+      <div class="facet"><h4>The idea</h4><p>Juicy cherry first, almond second. The almond should deepen the cherry rather than dominate it.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Cherry · Almond</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-chocolate-passionfruit" role="dialog" aria-label="Chocolate &amp; Passionfruit">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Chocolate and Passionfruit gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-chocolate-passionfruit)"></span></div>
+    <div class="tx">
+      <h2>Chocolate &amp; Passionfruit</h2>
+      <p class="it">Christmas, with a surprise.</p>
+      <p class="body">Every Christmas I make a chocolate and passionfruit tart. Rich dark chocolate, sharp passionfruit and one slightly ridiculous secret ingredient: popping candy. This is the gelato version. Look out for the surprise.</p>
+      <div class="facet"><h4>The idea</h4><p>Dense dark chocolate cut sharply by passionfruit, with popping candy providing the final surprise.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Dark chocolate · Passionfruit</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-pistachio" role="dialog" aria-label="Pistachio">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Pistachio gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-pistachio)"></span></div>
+    <div class="tx">
+      <h2>Pistachio</h2>
+      <p class="it">The first shop of the holiday.</p>
+      <p class="body">Whenever we go away, there are two things we buy before anything else: beer and pistachios. Unfortunately, I always forget the extra bowl for the shells. Which means that, sooner or later, I’ll absent-mindedly pick one up and try to eat it. You’d think I’d learn. I haven’t.</p>
+      <div class="facet"><h4>The idea</h4><p>Pure pistachio character with restrained sweetness, honey and salt used only to make the nut taste more itself.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Pistachio · Honey · Sea salt</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-milk-chocolate" role="dialog" aria-label="Milk Chocolate">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Milk Chocolate gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-milk-chocolate)"></span></div>
+    <div class="tx">
+      <h2>Milk Chocolate</h2>
+      <p class="it">A Curly Wurly when you need it.</p>
+      <p class="body">My eldest daughter Nina really doesn’t like sweets, but she can eat chocolate all day long. Dark chocolate doesn’t quite cut it. Any Cadbury’s bar she can get hold of will make her life infinitely better. This milk chocolate is much more luxurious, but it still pays homage to a Curly Wurly whenever you need it.</p>
+      <div class="facet"><h4>The idea</h4><p>Luxurious, creamy and unmistakably milk-chocolate-led: softer and sweeter than Dark Chocolate, but with enough cocoa depth to avoid becoming cloying.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Milk chocolate · Cocoa</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-cookies-cream" role="dialog" aria-label="Cookies &amp; Cream">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Cookies and Cream gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-cookies-cream)"></span></div>
+    <div class="tx">
+      <h2>Cookies &amp; Cream</h2>
+      <p class="it">The Oreo milkshake, frozen.</p>
+      <p class="body">Sometimes we’ll go out for lunch, and if the girls are really well behaved, we might get them a milkshake. Their go-to milkshake is always an Oreo special. So this is a homage to an Oreo milkshake in an ice cream.</p>
+      <div class="facet"><h4>The idea</h4><p>Vanilla-forward, creamy and nostalgic, with biscuit flavour through the base and distinct cookie pieces for texture.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Vanilla · Chocolate cookies</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-honeycomb" role="dialog" aria-label="Honeycomb">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Honeycomb gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-honeycomb)"></span></div>
+    <div class="tx">
+      <h2>Honeycomb</h2>
+      <p class="it">A very sticky kitchen.</p>
+      <p class="body">The first time we ever made honeycomb was an absolute disaster. A three-year-old with a rolling pin smashing up golden syrup and bicarbonate of soda does not make for a happy kitchen, but it was a lot of fun nonetheless.</p>
+      <div class="facet"><h4>The idea</h4><p>Warm caramel and honeycomb flavour in a creamy base, with crisp shards added late enough to keep their crunch.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Warm caramel · Honeycomb</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-rum-raisin" role="dialog" aria-label="Rum &amp; Raisin">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Rum and Raisin gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-rum-raisin)"></span></div>
+    <div class="tx">
+      <h2>Rum &amp; Raisin</h2>
+      <p class="it">Meg’s favourite.</p>
+      <p class="body">Meg’s favourite. One for the adults. A delicious dash of dark rum, raisins soaked in the liquor, and a very creamy golden ice cream to top it all off.</p>
+      <div class="facet"><h4>The idea</h4><p>Rich, golden and grown-up: a custard-led gelato with plump rum-soaked raisins and enough dark rum to be unmistakable without overwhelming the dairy.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Dark rum · Raisins</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-salted-caramel-popcorn" role="dialog" aria-label="Salted Caramel Popcorn">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Salted Caramel Popcorn gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-salted-caramel-popcorn)"></span></div>
+    <div class="tx">
+      <h2>Salted Caramel Popcorn</h2>
+      <p class="it">The cinema isn’t the cinema without popcorn.</p>
+      <p class="body">I love going to the cinema. For a couple of hours, the rest of life disappears. You sit on a sofa, put your arms around the people you love and watch something silly, funny, brilliant or occasionally absolutely terrible. None of that really matters, though, because the important bit is having an unnecessarily enormous bag of popcorn in front of you.</p>
+      <div class="facet"><h4>The idea</h4><p>Cinema popcorn made grown-up: toasted corn, dark caramel and salt, with enough savoury character to avoid simple sweetness.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Popcorn · Dark caramel · Sea salt</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-kiwi-elderflower" role="dialog" aria-label="Kiwi &amp; Elderflower">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Kiwi and Elderflower gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-kiwi-elderflower)"></span></div>
+    <div class="tx">
+      <h2>Kiwi &amp; Elderflower</h2>
+      <p class="it">Yes, I eat the skin.</p>
+      <p class="body">I spent a few months picking kiwis in New Zealand. It was one of those periods of life that stays with you: beautiful country, wonderful people and extraordinary generosity. Meg mostly remembers that I came home thinking it was perfectly normal to eat kiwis with the skin on. Apparently it isn’t. Don’t worry. We took the skin off for this.</p>
+      <div class="facet"><h4>The idea</h4><p>Kiwi should stay vivid and tangy; elderflower adds fragrance and lift without turning the sorbet floral.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Kiwi · Elderflower</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-earl-grey-lemon" role="dialog" aria-label="Earl Grey &amp; Lemon">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Earl Grey and Lemon gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-earl-grey-lemon)"></span></div>
+    <div class="tx">
+      <h2>Earl Grey &amp; Lemon</h2>
+      <p class="it">You can always tell when Mum’s been here.</p>
+      <p class="body">My mum doesn’t take milk in her tea. So whenever she’s been to our house, there’s usually a used teabag, half a cup of tea and a slice of lemon abandoned somewhere in the kitchen. It’s a tiny bit of evidence that she’s been around. Earl Grey, lemon and the reassuring knowledge that Mum has probably left something by the sink.</p>
+      <div class="facet"><h4>The idea</h4><p>Tea first, bergamot and lemon second: clean, aromatic and refreshing rather than tannic.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Earl Grey · Lemon</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-white-chocolate-miso" role="dialog" aria-label="White Chocolate &amp; Miso">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="White Chocolate and Miso gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-white-chocolate-miso)"></span></div>
+    <div class="tx">
+      <h2>White Chocolate &amp; Miso</h2>
+      <p class="it">Sweet, with a little something unexpected.</p>
+      <p class="body">My girls would happily eat their own body weight in white chocolate. Ridiculously sweet. Just like them. The miso is the little twist: salty, savoury and slightly unexpected. If our family is ordering a takeaway, there is a very good chance something Asian is arriving at the door. This is where those two worlds meet.</p>
+      <div class="facet"><h4>The idea</h4><p>Sweet white chocolate sharpened by savoury miso. The saltiness should create depth, not announce itself as miso soup.</p></div>
+      <div class="facet"><h4>Made with</h4><p>White chocolate · Miso · Sesame brittle</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-coffee-cardamom" role="dialog" aria-label="Coffee &amp; Cardamom">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Coffee and Cardamom gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-coffee-cardamom)"></span></div>
+    <div class="tx">
+      <h2>Coffee &amp; Cardamom</h2>
+      <p class="it">Meg has never learned to use the coffee machine.</p>
+      <p class="body">Buying my first proper coffee machine made a material improvement to my quality of life. Curiously, Meg has managed to live alongside one for years without ever learning how to operate it. Which means that most mornings a cup of coffee somehow finds its way upstairs and arrives beside her in bed. Funny how that works.</p>
+      <div class="facet"><h4>The idea</h4><p>Proper coffee intensity with cardamom as an aromatic lift. Neither should obscure the other.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Espresso · Green cardamom</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-brown-butter-sage" role="dialog" aria-label="Brown Butter &amp; Sage">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Brown Butter and Sage gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-brown-butter-sage)"></span></div>
+    <div class="tx">
+      <h2>Brown Butter &amp; Sage</h2>
+      <p class="it">We had to find something to do with all the sage.</p>
+      <p class="body">We grow sage in the garden. Or, more accurately, sage grows in the garden and we occasionally attempt to contain it. Leave it alone for five minutes and it appears to be making plans for the rest of the flowerbed. So this flavour is partly delicious and partly a form of horticultural population control.</p>
+      <div class="facet"><h4>The idea</h4><p>Nutty brown butter leads; sage should feel fragrant and culinary, never medicinal.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Brown butter · Sage</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-pear-tonka-bean" role="dialog" aria-label="Pear &amp; Tonka Bean">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Pear and Tonka Bean gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-pear-tonka-bean)"></span></div>
+    <div class="tx">
+      <h2>Pear &amp; Tonka Bean</h2>
+      <p class="it">Niamh’s first bite.</p>
+      <p class="body">The first food Niamh ever ate was a Conference pear. She was about six months old, sitting in my arms while I was eating one. Apparently waiting to be offered some was taking too long, because she suddenly leaned across and plunged her whole face straight into it. Niamh is our Bean. So this one belongs to her.</p>
+      <div class="facet"><h4>The idea</h4><p>Soft pear is the focus, with tonka used sparingly for warmth and perfume. Verify commercial tonka compliance before approval.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Pear · Tonka bean</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-hazelnut-gianduja" role="dialog" aria-label="Hazelnut &amp; Gianduja">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Hazelnut and Gianduja gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-hazelnut-gianduja)"></span></div>
+    <div class="tx">
+      <h2>Hazelnut &amp; Gianduja</h2>
+      <p class="it">There is almost always hazelnut involved.</p>
+      <p class="body">Hazelnut has somehow worked its way into my everyday life. Coffee? Hazelnut. Ice cream? A little hazelnut syrup. Chocolate? Even better with hazelnut. I could pretend there is a profound family story behind this one. There isn’t. I just really, really like hazelnuts.</p>
+      <div class="facet"><h4>The idea</h4><p>Roasted hazelnut should dominate, with gianduja adding chocolate depth and indulgence.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Roasted hazelnut · Gianduja</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-chai" role="dialog" aria-label="Chai">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Chai gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-chai)"></span></div>
+    <div class="tx">
+      <h2>Chai</h2>
+      <p class="it">The world’s largest tea cupboard. Probably.</p>
+      <p class="body">Two of our closest friends have a tea cupboard containing what appears to be approximately 400 different teas. Somehow, they can open it, reach into the chaos and immediately find the exact one they’re looking for. This is our tribute to them. No teabag required. Just a whole collection of spices, tea and the hope that we’ve chosen the right one.</p>
+      <div class="facet"><h4>The idea</h4><p>A coherent cup of spiced tea in gelato form: tea, cardamom, cinnamon and ginger integrated rather than competing.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Assam tea · Cardamom · Cinnamon</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-olive-oil-sea-salt" role="dialog" aria-label="Olive Oil &amp; Sea Salt">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Olive Oil and Sea Salt gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-olive-oil-sea-salt)"></span></div>
+    <div class="tx">
+      <h2>Olive Oil &amp; Sea Salt</h2>
+      <p class="it">Basically health food.</p>
+      <p class="body">When I can’t think of anything to cook, pasta with really good olive oil and sea salt feels remarkably close to a proper meal. So we took the same idea and made ice cream with beautiful extra virgin olive oil and sea salt instead. Olive oil is good for you. Therefore, by an extremely questionable piece of logic, this probably counts as health food.</p>
+      <div class="facet"><h4>The idea</h4><p>Excellent olive oil must be recognisable. Creamy, fruity and savoury, with salt sharpening the finish.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Extra-virgin olive oil · Sea salt</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-black-sesame-honey" role="dialog" aria-label="Black Sesame &amp; Honey">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Black Sesame and Honey gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-black-sesame-honey)"></span></div>
+    <div class="tx">
+      <h2>Black Sesame &amp; Honey</h2>
+      <p class="it">Sweet. Savoury. Somewhere in between.</p>
+      <p class="body">We love teriyaki in our house – chicken, salmon, anything really. This isn’t teriyaki ice cream, because even we have limits. But black sesame and honey have that same lovely tension between savoury, nutty, salty and sweet. Familiar flavours, just somewhere you weren’t necessarily expecting to find them.</p>
+      <div class="facet"><h4>The idea</h4><p>Deep roasted sesame, gentle honey sweetness and a savoury edge. Dark, nutty and balanced.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Black sesame · Honey</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-gooseberry-elderflower" role="dialog" aria-label="Gooseberry &amp; Elderflower">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Gooseberry and Elderflower gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-gooseberry-elderflower)"></span></div>
+    <div class="tx">
+      <h2>Gooseberry &amp; Elderflower</h2>
+      <p class="it">Long summers in Grandma’s garden.</p>
+      <p class="body">Meg’s grandma had a gooseberry bush in her garden in Norfolk. Every summer they’d pick the fruit together and turn it into gooseberry fool or a tart. This one is a memory of those enormous childhood summers when the garden seemed to go on forever and there wasn’t really anywhere else you needed to be.</p>
+      <div class="facet"><h4>The idea</h4><p>Tart gooseberry remains central; elderflower softens and perfumes without masking its sharpness.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Gooseberry · Elderflower</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-maple-pecan-bourbon" role="dialog" aria-label="Maple, Pecan &amp; Bourbon">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Maple, Pecan and Bourbon gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-maple-pecan-bourbon)"></span></div>
+    <div class="tx">
+      <h2>Maple, Pecan &amp; Bourbon</h2>
+      <p class="it">Pancakes, but for grown-ups.</p>
+      <p class="body">One of my favourite family mornings starts with pancakes or waffles. Everyone chips in, although somehow this generally results in me standing at the cooker while everybody else waits to be fed. And there is only one proper topping: maple syrup. So we added pecans, a little bourbon and turned the whole morning into an ice cream. Slightly more grown-up. Only slightly.</p>
+      <div class="facet"><h4>The idea</h4><p>Maple-led with toasted pecan and restrained bourbon warmth: breakfast nostalgia with an adult finish.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Maple · Toasted pecan · Bourbon</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-rhubarb-custard" role="dialog" aria-label="Rhubarb &amp; Custard">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Rhubarb and Custard gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-rhubarb-custard)"></span></div>
+    <div class="tx">
+      <h2>Rhubarb &amp; Custard</h2>
+      <p class="it">A pound to spend. Choose wisely.</p>
+      <p class="body">Every Sunday after church, Mum would give my sister and me a pound each and let us loose in the sweet shop. I’d emerge clutching a little brown paper bag filled with Black Jacks and rhubarb and custards. Looking back, a pound bought an extraordinary amount of happiness. This is my homage to that little paper bag.</p>
+      <div class="facet"><h4>The idea</h4><p>The flavour of the sweet: tangy rhubarb against rich vanilla custard, instantly recognisable and nostalgic.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Rhubarb · Vanilla custard</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-banana-peanut-chocolate" role="dialog" aria-label="Banana, Peanut &amp; Chocolate">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Banana, Peanut and Chocolate gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-banana-peanut-chocolate)"></span></div>
+    <div class="tx">
+      <h2>Banana, Peanut &amp; Chocolate</h2>
+      <p class="it">The breakfast of champions. Sort of.</p>
+      <p class="body">At the weekend, when the girls are feeling particularly cheeky, they’ll ask for toast with Nutella and peanut butter. It must be one of the most calorific breakfasts known to humankind. Naturally, they absolutely love it. Banana, peanut and chocolate takes that same gloriously excessive idea and puts it into a scoop. Probably not for breakfast.</p>
+      <div class="facet"><h4>The idea</h4><p>Big, playful and indulgent: ripe banana, roasted peanut and dark chocolate with enough salt to keep it balanced.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Banana · Roasted peanut · Dark chocolate</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-birthday-cake" role="dialog" aria-label="Birthday Cake">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Birthday Cake gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-birthday-cake)"></span></div>
+    <div class="tx">
+      <h2>Birthday Cake</h2>
+      <p class="it">The one day nobody’s counting.</p>
+      <p class="body">Birthday cakes have become serious business in our house. We’ve made Disney characters, swimming cakes, gymnastics cakes, unicorns, Wallace &amp; Gromit – you name it, we’ve probably covered it in icing. This flavour is designed to take you back to the one day of the year when nobody judges you for eating far too much cake.</p>
+      <div class="facet"><h4>The idea</h4><p>Celebratory vanilla and white chocolate with real cake pieces; joyful and sweet without tasting synthetic.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Vanilla · White chocolate · Cake pieces</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-chocolate-brownie" role="dialog" aria-label="Chocolate Brownie">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Chocolate Brownie gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-chocolate-brownie)"></span></div>
+    <div class="tx">
+      <h2>Chocolate Brownie</h2>
+      <p class="it">Absolutely no attempt to be sensible.</p>
+      <p class="body">This one’s for the kids. Gooey, sticky, chocolatey and very, very naughty, all folded into one ice cream. There isn’t a clever story behind it and there doesn’t need to be. If chocolate is your thing, this is the one for you.</p>
+      <div class="facet"><h4>The idea</h4><p>Maximum chocolate comfort: dense cocoa, fudgy brownie and a little salt. Gooey and unapologetically rich.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Dark chocolate · Fudgy brownie</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+<div class="ov" id="ov-s-strawberry-cheesecake" role="dialog" aria-label="Strawberry Cheesecake">
+  <label class="scrim" for="sh-none"></label>
+  <div class="sh fv">
+    <label class="close" for="sh-none" aria-label="Close">&times;</label>
+    <div class="pic"><span class="bgimg" role="img" aria-label="Strawberry Cheesecake gelato heaped in a Bean and Bear tub on a marble counter." style="background-image:var(--p-strawberry-cheesecake)"></span></div>
+    <div class="tx">
+      <h2>Strawberry Cheesecake</h2>
+      <p class="it">What’s for pud?</p>
+      <p class="body">After almost every meal when I was little, I’d ask the same question: ‘What’s for pud?’ And one of the best answers was a shop-bought frozen strawberry cheesecake. There was absolutely nothing sophisticated about it, but it put an enormous smile on my face every time. Ours is rather more sophisticated. But hopefully, somewhere underneath all that proper strawberry and creamy cheesecake, there’s still a little taste of being a child and discovering what’s for pud.</p>
+      <div class="facet"><h4>The idea</h4><p>A homogeneous strawberry-cheesecake gelato: proper fruit, tangy cream cheese and crisp biscuit added only at service.</p></div>
+      <div class="facet"><h4>Made with</h4><p>Strawberry · Cream cheese · Biscuit</p></div>
+      <div class="choose"><h4>Choose your tub</h4><div class="two"><label class="b press" for="sh-basket"><span>500ml</span><b>£10</b></label><label class="b press" for="sh-basket"><span>1 litre</span><b>£18</b></label></div></div>
+      <p class="fine">Prices include VAT. Allergen information to follow.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
