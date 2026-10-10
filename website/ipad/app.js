@@ -152,6 +152,49 @@
   }
   window.showToast = showToast;
 
+  // ================= Login gate =================
+  var AUTH_KEY = 'bb_store_authed';
+  function isAuthed() {
+    try { return sessionStorage.getItem(AUTH_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setAuthed(v) {
+    try { if (v) sessionStorage.setItem(AUTH_KEY, '1'); else sessionStorage.removeItem(AUTH_KEY); } catch (e) { /* private mode: falls back to in-memory only */ }
+  }
+  function showLogin() {
+    var screen = document.getElementById('login-screen');
+    screen.classList.remove('hide');
+    document.getElementById('login-user').value = '';
+    document.getElementById('login-pass').value = '';
+    document.getElementById('login-error').classList.remove('show');
+    setTimeout(function () { document.getElementById('login-user').focus(); }, 300);
+  }
+  function hideLogin() {
+    document.getElementById('login-screen').classList.add('hide');
+  }
+  window.lockStore = function () {
+    setAuthed(false);
+    showLogin();
+  };
+  document.getElementById('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var u = document.getElementById('login-user').value.trim();
+    var p = document.getElementById('login-pass').value;
+    if (u.toLowerCase() === 'admin' && p === '2501') {
+      setAuthed(true);
+      hideLogin();
+      sweep();
+    } else {
+      var card = document.querySelector('.login-card');
+      document.getElementById('login-error').classList.add('show');
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+      var passField = document.getElementById('login-pass');
+      passField.value = '';
+      passField.focus();
+    }
+  });
+
   // ================= Who am I (profile switcher) =================
   var currentStaffId = DATA.staff[0].id;
   function renderWhoAmI() {
@@ -162,14 +205,21 @@
     var menu = document.getElementById('whoami-menu');
     menu.innerHTML = DATA.staff.map(function (s) {
       return '<button class="whoami-opt" data-sid="' + s.id + '">' + initialsAvatar(s) + '<span>' + s.name + '</span></button>';
-    }).join('');
-    menu.querySelectorAll('.whoami-opt').forEach(function (btn) {
+    }).join('') + '<div class="whoami-divider"></div>' +
+      '<button class="whoami-opt lock" id="lock-btn">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' +
+      '<span>Lock iPad</span></button>';
+    menu.querySelectorAll('.whoami-opt[data-sid]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         currentStaffId = btn.getAttribute('data-sid');
         document.getElementById('whoami-wrap').classList.remove('open');
         renderWhoAmI();
         showToast('Signed in as ' + staffById(currentStaffId).name);
       });
+    });
+    document.getElementById('lock-btn').addEventListener('click', function () {
+      document.getElementById('whoami-wrap').classList.remove('open');
+      lockStore();
     });
   }
   document.getElementById('whoami-btn').addEventListener('click', function (e) {
@@ -628,6 +678,20 @@
     if (e.target === this) hideModal();
   });
 
+  // Escape closes whatever overlay is open; Enter in a modal text field saves it
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (document.getElementById('modal-backdrop').classList.contains('show')) { hideModal(); return; }
+      if (document.getElementById('drawer-backdrop').classList.contains('show')) { closeRecipe(); return; }
+      document.getElementById('whoami-wrap').classList.remove('open');
+      return;
+    }
+    if (e.key === 'Enter' && e.target.tagName === 'INPUT' && document.getElementById('modal-backdrop').classList.contains('show')) {
+      var save = document.getElementById('modal-save');
+      if (save) { e.preventDefault(); save.click(); }
+    }
+  });
+
   // ================= Overview =================
   function sumLastDays(n) {
     return DATA.sales_days.slice(-n).reduce(function (a, d) { return a + d.v; }, 0);
@@ -848,6 +912,14 @@
       overviewView.classList.add('in');
       animateViewEntrance('overview');
     });
+
+    if (isAuthed()) {
+      var screen = document.getElementById('login-screen');
+      screen.style.transition = 'none';
+      screen.classList.add('hide');
+    } else {
+      showLogin();
+    }
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

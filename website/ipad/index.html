@@ -352,6 +352,34 @@ table.data tbody tr:hover{background:rgba(201,160,95,.07)}
   .bottom-nav button.active{color:var(--gold-lt)}
   .bottom-nav svg{width:19px;height:19px}
 }
+
+/* ---------- login ---------- */
+.login-screen{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:radial-gradient(ellipse 900px 700px at 50% 8%,var(--forest2) 0%,var(--forest) 48%,var(--deep) 100%);
+  transition:opacity .5s cubic-bezier(.22,1,.36,1),visibility 0s linear 0s}
+.login-screen.hide{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease,visibility 0s linear .4s}
+.login-wrap{width:min(380px,100%);display:flex;flex-direction:column;align-items:center;gap:28px}
+.login-brand{display:flex;flex-direction:column;align-items:center;gap:11px;text-align:center}
+.login-brand .mark-icon{width:44px;height:auto;display:block}
+.login-brand .wordmark{width:192px;height:auto;display:block}
+.login-brand .tag{font-family:var(--serif);font-style:italic;color:var(--gold-lt);font-size:13px;letter-spacing:.04em}
+.login-card{width:100%;padding:30px 30px 28px;background:var(--card);backdrop-filter:none;-webkit-backdrop-filter:none;
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 30px 60px -20px rgba(5,18,13,.55)}
+.login-card .eyebrow{color:var(--gold-tx)}
+.login-card h1{font-family:var(--serif);font-weight:600;font-size:23px;color:var(--forest);margin-top:5px;letter-spacing:-.01em}
+.login-card .sub{font-size:12.5px;color:var(--muted);margin-top:5px}
+.login-form{display:flex;flex-direction:column;gap:14px;margin-top:22px}
+.login-form label{font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--gold-tx);display:flex;flex-direction:column;gap:6px}
+.login-form .field{width:100%;height:42px}
+.login-error{font-size:12px;color:var(--red);font-weight:600;display:none;align-items:center;gap:6px}
+.login-error.show{display:flex}
+.login-error svg{width:14px;height:14px;flex-shrink:0}
+.login-submit{width:100%;height:44px;margin-top:2px;font-size:13.5px}
+.login-card.shake{animation:loginShake .42s cubic-bezier(.36,.07,.19,.97)}
+@keyframes loginShake{10%,90%{transform:translateX(-1px)}20%,80%{transform:translateX(3px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
+.whoami-divider{height:1px;background:rgba(255,255,255,.1);margin:5px 2px}
+.whoami-opt.lock{color:var(--gold-lt)}
+.whoami-opt.lock svg{width:15px;height:15px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -364,6 +392,30 @@ table.data tbody tr:hover{background:rgba(201,160,95,.07)}
 
 <div class="ambient" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
 <div class="sweep" id="sweep"></div>
+
+<div class="login-screen" id="login-screen">
+  <div class="login-wrap">
+    <div class="login-brand">
+      <img class="mark-icon" src="../assets/logo/icon-gold-dark-transparent.svg" alt="">
+      <img class="wordmark" src="../assets/logo/wordmark-only-dark-transparent.svg" alt="Bean and Bear">
+      <span class="tag">Store iPad</span>
+    </div>
+    <div class="card login-card">
+      <div class="eyebrow">Staff sign-in</div>
+      <h1>Good to see you.</h1>
+      <div class="sub">Enter the store sign-in to unlock this iPad.</div>
+      <form class="login-form" id="login-form" autocomplete="off">
+        <label>Username<input class="field" id="login-user" placeholder="admin" autocomplete="username"></label>
+        <label>Password<input class="field" id="login-pass" type="password" placeholder="••••••" autocomplete="current-password"></label>
+        <div class="login-error" id="login-error">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+          <span id="login-error-text">That username or password isn't right.</span>
+        </div>
+        <button class="btn login-submit" type="submit">Unlock</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <div class="shell">
   <aside class="sidebar">

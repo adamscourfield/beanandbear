@@ -2,10 +2,11 @@
 
 A standalone, iPad-first prototype for the people working the counter: recipes, roster, inventory, and sales — all in the same forest/cream/gold brand as the website and recipe book. **Nothing here is wired to a real backend.** It's one HTML page plus one JS file holding fabricated data in memory; every "save" just updates that in-memory data and re-renders, so it looks and feels real for a demo but resets on reload. That was the brief: a prototype, not a working system.
 
-Open `index.html` directly, or serve the `website/` folder and visit `/ipad/`.
+Open `index.html` directly, or serve the `website/` folder and visit `/ipad/`. The sign-in screen is `admin` / `2501`.
 
 ## What's in it
 
+- **Sign-in** — a single shared passcode (`admin` / `2501`) unlocks the iPad, like a till login rather than a personal account; individual staff then pick their own name from "Signed in as" in the sidebar to personalise the roster. "Lock iPad" in that same menu re-locks it. The unlock is remembered for the browser tab's session (`sessionStorage`) so a reload mid-demo doesn't boot you back to the sign-in screen, but it's gone once the tab closes — there's no real auth behind it.
 - **Overview** — today's takings, who's on shift right now, low-stock alerts, recent deliveries.
 - **Recipes** — all 42 real flavours (from the recipe book), searchable and filterable by category, each opening into a detail panel with the story, "the point of this flavour," ingredients, and a tappable method checklist.
 - **Roster** — a full year (2026) of scheduled shifts, browsable as a Week grid (tap an open shift to sign up as whichever staff member is "signed in"), a Month calendar (staffing dots per day, click through to that week), or a Year view (a heat-map card per month with scheduled hours and open-shift counts). Prev/Today/Next navigate within whichever mode is active; "Hours" and "shifts worked" below the grid track whatever period is on screen.
@@ -27,4 +28,4 @@ The sidebar brand mark uses the real logo artwork (`website/assets/logo/`) — t
 
 ## Turning this into something real
 
-Nothing here persists or authenticates. If this direction is the one to build on, the next step is a real backend — likely extending the PHP + SQLite system already in `website/admin/`, which has working login, recipes, inventory, time logs and financials, just with an older, plainer interface. This prototype could replace that interface once wired to real data and real auth; the two aren't connected today.
+Nothing here persists, and the sign-in is a hardcoded passcode check in client-side JS, not real authentication — fine for a demo, not for a till that handles real stock and sales. If this direction is the one to build on, the next step is a real backend — likely extending the PHP + SQLite system already in `website/admin/`, which has working login, recipes, inventory, time logs and financials, just with an older, plainer interface. This prototype could replace that interface once wired to real data and real auth; the two aren't connected today.
