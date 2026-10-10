@@ -18,6 +18,8 @@ Built to match the interaction quality of the reference prototype you shared (RE
 
 Responsive down to iPad portrait width: the sidebar becomes a bottom tab bar below ~860px.
 
+The sidebar brand mark uses the real logo artwork (`website/assets/logo/`) — the vector bear icon and the "BEAN AND BEAR" wordmark, cropped from the official lockup files and stripped to transparent so they sit directly on the sidebar's gradient. No CSS-rendered logotype.
+
 ## The fabricated data
 
 - **Recipes** are real — pulled from `BeanAndBear_RecipeBook.pdf`.

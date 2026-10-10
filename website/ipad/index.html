@@ -61,11 +61,11 @@ button,input,select{font:inherit;color:inherit}
   color:var(--cream);box-shadow:8px 0 32px -18px rgba(10,32,25,.5);
 }
 .brand{display:flex;align-items:center;gap:10px;padding:2px 6px 0}
-.brand .mark{width:34px;height:34px;flex-shrink:0;display:grid;place-items:center}
-.brand .mark svg{width:26px;height:auto}
-.brand-text{display:flex;flex-direction:column;line-height:1.15}
-.brand-text b{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.01em}
-.brand-text span{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold-lt);font-size:11.5px}
+.brand .mark{width:32px;flex-shrink:0;display:grid;place-items:center}
+.brand .mark img{width:32px;height:auto;display:block}
+.brand-text{display:flex;flex-direction:column;gap:4px}
+.brand-text img.wordmark{width:134px;height:auto;display:block}
+.brand-text span{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold-lt);font-size:11.5px;letter-spacing:.03em}
 
 .nav{display:flex;flex-direction:column;gap:2px;position:relative;margin-top:4px}
 .nav-indicator{position:absolute;left:0;right:0;height:42px;top:0;background:rgba(201,160,95,.14);
@@ -322,7 +322,6 @@ table.data tbody tr:hover{background:rgba(201,160,95,.07)}
   <defs><linearGradient id="goldg" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0" stop-color="#EDD6A2"/><stop offset=".6" stop-color="#D0A863"/><stop offset="1" stop-color="#C39A55"/>
   </linearGradient></defs>
-  <symbol id="bear" viewBox="0 0 196 128.7"><path d="M195.80,29.00 L188.70,25.90 L177.60,13.50 L168.50,10.30 L162.40,0.00 L158.50,0.00 L149.40,10.10 L141.80,13.20 L123.80,15.30 L105.10,23.20 L73.60,27.40 L50.90,33.50 L32.20,44.40 L19.90,58.40 L8.10,94.10 L0.20,109.60 L0.30,121.50 L6.40,128.40 L23.40,127.90 L16.80,119.50 L37.60,101.30 L35.00,96.40 L36.90,93.70 L44.30,105.20 L46.20,121.10 L51.50,127.80 L75.70,128.40 L74.60,124.10 L65.70,120.60 L66.00,115.50 L71.90,105.60 L73.60,88.10 L76.80,96.00 L87.50,96.10 L94.70,93.20 L96.40,94.40 L97.00,121.10 L101.50,128.40 L118.60,128.40 L119.40,125.80 L114.70,123.90 L112.00,117.10 L126.10,90.30 L132.00,85.80 L133.30,87.80 L126.20,97.60 L124.70,105.50 L140.00,113.40 L144.10,117.50 L141.80,124.40 L144.60,127.00 L148.50,127.00 L154.80,120.50 L154.90,110.20 L145.30,93.70 L144.90,76.00 L153.20,59.50 L163.50,49.20 L191.60,40.90Z"/></symbol>
 </svg>
 
 <div class="ambient" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
@@ -331,8 +330,11 @@ table.data tbody tr:hover{background:rgba(201,160,95,.07)}
 <div class="shell">
   <aside class="sidebar">
     <div class="brand">
-      <span class="mark"><svg viewBox="0 0 196 128.7"><use href="#bear" fill="url(#goldg)"/></svg></span>
-      <div class="brand-text"><b>Bean &amp; Bear</b><span>Store</span></div>
+      <span class="mark"><img src="../assets/logo/icon-gold-dark-transparent.svg" alt=""></span>
+      <div class="brand-text">
+        <img class="wordmark" src="../assets/logo/wordmark-only-dark-transparent.svg" alt="Bean and Bear">
+        <span>Store</span>
+      </div>
     </div>
 
     <nav class="nav">
