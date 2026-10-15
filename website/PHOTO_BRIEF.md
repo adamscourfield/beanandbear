@@ -95,7 +95,7 @@ recipe\'s own key ingredients in the recipe book.
   26                kiwi-elderflower.jpg          Kiwi &            Kiwi ·
                                                   Elderflower       Elderflower
 
-  27                earl-grey-lemon.jpg           Earl Grey & Lemon Earl Grey · Lemon
+  27                earl-grey-lemon.jpg           Tea & Lemon       Tea · Lemon
 
   28                white-chocolate-miso.jpg      White Chocolate & White chocolate ·
                                                   Miso              Miso · Sesame
@@ -110,7 +110,7 @@ recipe\'s own key ingredients in the recipe book.
   31                pear-tonka-bean.jpg           Pear & Tonka Bean Pear · Tonka bean
 
   32                hazelnut-gianduja.jpg         Hazelnut &        Roasted hazelnut
-                                                  Gianduja          · Gianduja
+                                                  Chocolate         · Chocolate
 
   33                chai.jpg                      Chai              Assam tea ·
                                                                     Cardamom ·
