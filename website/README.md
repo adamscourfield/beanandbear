@@ -6,7 +6,7 @@ bean-and-bear-website.html is the same site as one file.
 ## The page
 
 Two pages, switched by the bear icon (top left, always home) and a
-\"Shop all 42 flavours\" link.
+\"Shop all 39 flavours\" link.
 
 **Home** --- fast to the gelato: a full-screen photo (the sign and
 tagline over it, no blank space, no scroll prompt), the brand story, the
