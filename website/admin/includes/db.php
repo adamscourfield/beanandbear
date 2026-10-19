@@ -104,15 +104,22 @@ function seed_if_empty(PDO $pdo): void
         $insR = $pdo->prepare('INSERT INTO recipes (flavour_key, sort_order, name, tagline, story, brief) VALUES (?,?,?,?,?,?)');
         $insI = $pdo->prepare('INSERT INTO recipe_ingredients (recipe_id, group_name, qty, item, sort_order) VALUES (?,?,?,?,?)');
         $insS = $pdo->prepare('INSERT INTO recipe_steps (recipe_id, step_number, instruction) VALUES (?,?,?)');
-        foreach ($recipes as $r) {
-            $insR->execute([$r['flavour_key'], $r['sort_order'], $r['name'], $r['tagline'], $r['story'], $r['brief']]);
-            $rid = (int) $pdo->lastInsertId();
-            foreach ($r['ingredients'] as $idx => $ing) {
-                $insI->execute([$rid, $ing['group'], $ing['qty'], $ing['item'], $idx]);
+        $pdo->beginTransaction();
+        try {
+            foreach ($recipes as $r) {
+                $insR->execute([$r['flavour_key'], $r['sort_order'], $r['name'], $r['tagline'], $r['story'], $r['brief']]);
+                $rid = (int) $pdo->lastInsertId();
+                foreach ($r['ingredients'] as $idx => $ing) {
+                    $insI->execute([$rid, $ing['group'], $ing['qty'], $ing['item'], $idx]);
+                }
+                foreach ($r['method'] as $idx => $step) {
+                    $insS->execute([$rid, $idx + 1, $step]);
+                }
             }
-            foreach ($r['method'] as $idx => $step) {
-                $insS->execute([$rid, $idx + 1, $step]);
-            }
+            $pdo->commit();
+        } catch (Throwable $e) {
+            $pdo->rollBack();
+            throw $e;
         }
     }
 
@@ -120,8 +127,15 @@ function seed_if_empty(PDO $pdo): void
     if ($ingredientCount === 0) {
         $names = require __DIR__ . '/seed_ingredients.php';
         $insIng = $pdo->prepare('INSERT OR IGNORE INTO ingredients (name) VALUES (?)');
-        foreach ($names as $n) {
-            $insIng->execute([$n]);
+        $pdo->beginTransaction();
+        try {
+            foreach ($names as $n) {
+                $insIng->execute([$n]);
+            }
+            $pdo->commit();
+        } catch (Throwable $e) {
+            $pdo->rollBack();
+            throw $e;
         }
     }
 }

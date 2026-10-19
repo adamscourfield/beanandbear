@@ -21,6 +21,20 @@ if ($userCount > 0) {
     exit;
 }
 
+// A setup key gates this page: only someone with server filesystem access can
+// read it, so a stranger who finds this URL before the real owner visits it
+// cannot create the admin account themselves. data/ is denied over HTTP by
+// its own .htaccess, so this is never fetchable through the web server.
+$tokenPath = __DIR__ . '/data/setup_token.txt';
+if (!is_dir(dirname($tokenPath))) {
+    mkdir(dirname($tokenPath), 0700, true);
+}
+if (!file_exists($tokenPath)) {
+    file_put_contents($tokenPath, bin2hex(random_bytes(16)));
+    chmod($tokenPath, 0600);
+}
+$setupToken = trim((string) file_get_contents($tokenPath));
+
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,8 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = trim((string) ($_POST['username'] ?? ''));
         $password = (string) ($_POST['password'] ?? '');
         $confirm = (string) ($_POST['confirm'] ?? '');
+        $setupKey = trim((string) ($_POST['setup_key'] ?? ''));
 
-        if ($username === '' || $password === '') {
+        if (!hash_equals($setupToken, $setupKey)) {
+            $error = 'Incorrect setup key.';
+        } elseif ($username === '' || $password === '') {
             $error = 'Enter a username and password.';
         } elseif (strlen($password) < 10) {
             $error = 'Password must be at least 10 characters.';
@@ -53,9 +70,11 @@ require __DIR__ . '/includes/layout_top.php';
   <h1>Create the first admin account</h1>
   <p class="muted">This page only works once — it locks itself as soon as one account exists.</p>
   <?php if ($error): ?><p class="error"><?= htmlspecialchars($error) ?></p><?php endif; ?>
+  <p class="muted">Needs the setup key from <code>data/setup_token.txt</code> on the server (SSH or your host's file manager) — this page is otherwise open to whoever gets to it first.</p>
   <form method="post" class="stack">
     <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrf_token()) ?>">
-    <label>Username<input type="text" name="username" required autofocus autocomplete="username"></label>
+    <label>Setup key<input type="text" name="setup_key" required autofocus autocomplete="off"></label>
+    <label>Username<input type="text" name="username" required autocomplete="username"></label>
     <label>Password<input type="password" name="password" required minlength="10" autocomplete="new-password"></label>
     <label>Confirm password<input type="password" name="confirm" required minlength="10" autocomplete="new-password"></label>
     <button class="btn" type="submit">Create account</button>

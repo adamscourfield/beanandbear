@@ -316,6 +316,18 @@
   }
   function rosterEntry(iso) { return DATA.roster[iso] || { shifts: [] }; }
 
+  // Accepts a plain hyphen, en dash or em dash, with or without spaces, and
+  // normalises to the "H:MM – H:MM" form the roster's split('–') expects.
+  // Returns null for anything that doesn't parse, so a bad shift is never stored.
+  function parseShiftTime(raw) {
+    var m = (raw || '').trim().match(/^(\d{1,2}:\d{2})\s*[-–—]\s*(\d{1,2}:\d{2})$/);
+    if (!m) return null;
+    var startH = parseInt(m[1], 10), endH = parseInt(m[2], 10);
+    if (startH < 0 || startH > 23 || endH < 0 || endH > 23) return null;
+    if (timeToHours(m[2]) <= timeToHours(m[1])) return null;
+    return m[1] + ' – ' + m[2];
+  }
+
   function setRosterModeTab(mode) {
     document.querySelectorAll('#roster-mode-tabs .pill-tab').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-mode') === mode);
@@ -577,7 +589,11 @@
       '</div>',
       function () {
         var iso = document.getElementById('ns-day').value;
-        var time = document.getElementById('ns-time').value || '9:00 – 13:00';
+        var time = parseShiftTime(document.getElementById('ns-time').value);
+        if (!time) {
+          showToast('Enter a time range like 9:00 – 13:00, start before end.');
+          return;
+        }
         var staffId = document.getElementById('ns-staff').value || null;
         if (!DATA.roster[iso]) DATA.roster[iso] = { shifts: [] };
         DATA.roster[iso].shifts.push({ label: 'Extra', time: time, staff: staffId });

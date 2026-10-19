@@ -1,2 +1,3 @@
 website/admin/data/*.sqlite
 website/admin/data/*.sqlite-journal
+website/admin/data/setup_token.txt
